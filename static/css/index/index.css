@@ -1,0 +1,66 @@
+
+
+
+@media (max-width: 900px) { /* if smaller than 900px */
+
+}
+
+@media (min-width: 900px) {
+    
+}
+
+body{
+    background-image: url("../../img/common/bg1.png");
+    background-repeat: repeat;
+}
+
+#page-wrapper{
+    width:80%;
+    height:100%;
+    margin:auto;
+    background:blue;
+}
+
+#left-collar-bg,
+#right-collar-bg{
+    background-size: 100% 100%;
+    background-attachment: scroll;
+}
+#left-collar-bg{ background-image: url(../../img/index/main_bowtie.png); }
+#right-collar-bg{ background-image: url(../../img/index/main_bowtie.png); }
+
+#section0,
+    #section1,
+    #section2,
+    #section3,
+    #section4,
+    #section5{
+        background-size: cover;
+        background-attachment: fixed;
+        padding: 1% 0 0 0;
+    }
+
+/*../img/indexPg/banner/header-banner.png*/
+    #section0{
+        background-image: url(../../img/indexPg/banner/header-banner_cmp.png);
+    }
+    #section1{
+        background-image: url(../../img/indexPg/about/about3_bg.png);
+    }
+    #section2{
+        background-image: url(../../img/indexPg/events/event2_bg.png);
+    }
+    #section3{
+        background-image: url(../../img/indexPg/featured/featured1_bg.png);
+    }
+
+    #section4{
+        background-image: url(../../img/indexPg/FAQ/faq_bg.png);
+    }
+
+    #section5{
+        /*background-image: url(../../img/indexPg/FAQ/faq_bg.png);*/
+    }
+    #section3 h1{
+        color: #000;
+    }
