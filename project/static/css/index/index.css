@@ -12,6 +12,7 @@
 body{
     background-image: url("../../img/common/bg1.png");
     background-repeat: repeat;
+    background-size: 5%
 }
 
 #page-wrapper{
@@ -26,8 +27,8 @@ body{
     background-size: 100% 100%;
     background-attachment: scroll;
 }
-#left-collar-bg{ background-image: url(../../img/index/main_bowtie.png); }
-#right-collar-bg{ background-image: url(../../img/index/main_bowtie.png); }
+#left-collar-bg{ background-image: url(../../img/common/bg_collar_left.png); }
+#right-collar-bg{ background-image: url(../../img/common/bg_collar_right.png); }
 
 #section0,
     #section1,
