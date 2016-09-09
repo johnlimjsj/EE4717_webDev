@@ -15,6 +15,27 @@ body{
     background-size: 5%
 }
 
+nav{ 
+    text-align: center;
+    padding-left: 10px;
+}
+
+nav a{ 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:link{ color: #000000; }
+
+nav a:visited{ color: #000000; }
+
+nav a:hover{ color: #CCCCCC; }
+
+nav img{
+    width: 20%;
+    height: 20%;
+}
+
 #page-wrapper{
     width:80%;
     height:100%;
