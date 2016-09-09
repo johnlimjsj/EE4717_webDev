@@ -13,6 +13,13 @@
     font-style: normal;
   }
 
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url(../../fonts/playfairdisplay/PlayfairDisplay-Regular.ttf); /* File to be stored at your site */
+  font-weight: normal;
+    font-style: normal;
+  }  
+
 body,
 html {
     width: 100%;
@@ -21,7 +28,7 @@ html {
 
 body {
     font-family: "Roboto-Regular";
-    font-weight: 600;
+    font-weight: 300;
     font-style: normal;
 }
 
@@ -31,6 +38,10 @@ body {
     font-size: 16px;
     font-style: normal;
     color: #233B79;
+}
+
+nav{
+  font-family: "PlayfairDisplay";
 }
 
 h1,
