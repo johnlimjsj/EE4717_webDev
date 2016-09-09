@@ -1,0 +1,11 @@
+label       {float:left;
+            display:block;
+            text-align:right;
+            width:120px;
+            padding-right:10px;}
+            
+input       {display:block;
+            margin-bottom:20px;}    
+
+textarea    {display:block;
+            margin-bottom:20px;}    

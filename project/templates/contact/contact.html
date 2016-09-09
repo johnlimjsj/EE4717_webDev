@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <!-- Index CSS -->
-    <link href="../../static/css/index/index.css" rel="stylesheet" type="text/css">
+    <link href="../../static/css/contact/contact.css" rel="stylesheet" type="text/css">
 
 
     <!-- Common CSS -->
@@ -43,6 +43,19 @@
                 <a href="#gallery.html">Gallery</a> &nbsp; &nbsp;
                 <a href="#contact.html">Contact</a> &nbsp;
             </nav>
+
+            <form name="contact" id="contact" method="get" action="show_get.php">
+                <label for="myName"> Name </label>
+                <input type="text" name="myName" id="myName">
+
+                <label for="myEmal"> Email </label>
+                <input type="text" name="myName" id="myEmail">
+
+                <label for="myComment"> Comments </label>
+                <textarea name="myComment" id="myComment" cols="20" rows="2"></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
 
              <footer>
 			 	<small>Mix &amp; Match is an online shop for custom-made clothes and accessories.</small>
