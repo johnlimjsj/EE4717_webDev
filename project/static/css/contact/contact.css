@@ -1,11 +1,26 @@
-label       {float:left;
-            display:block;
-            text-align:right;
-            width:120px;
-            padding-right:10px;}
-            
-input       {display:block;
-            margin-bottom:20px;}    
+#contact{
+    margin-right: 20px;
+    border-radius: 5px;
+}
 
-textarea    {display:block;
-            margin-bottom:20px;}    
+
+#contact input, #contact textarea{
+    border-radius: 5px;
+    display:block;
+    margin-bottom:20px;
+}
+#contact label{
+    float: left;
+    display:block;
+    text-align:right;
+    width:120px;
+    padding-right:00px;}
+
+#contactUs {
+    float: left;
+    width: 250px;
+    height: 350px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+

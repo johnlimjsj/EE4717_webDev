@@ -44,17 +44,32 @@
                 <a href="#contact.html">Contact</a> &nbsp;
             </nav>
 
-            <form name="contact" id="contact" method="get" action="show_get.php">
-                <label for="myName"> Name </label>
-                <input type="text" name="myName" id="myName">
+            <img src="../../static/img/contact/contactUs.png" id="contactUs">
 
-                <label for="myEmal"> Email </label>
-                <input type="text" name="myName" id="myEmail">
+            <form name="contact" method="get" action="show_get.php">
 
-                <label for="myComment"> Comments </label>
-                <textarea name="myComment" id="myComment" cols="20" rows="2"></textarea>
+                <fieldset id="contact">
 
-                <input type="submit" value="Submit">
+                    <legend><h1>Contact Us</h2></legend>
+
+                    <label for="myFirstName"> First Name </label>
+                    <input type="text" name="myFirstName" id="myFirstName">
+
+                    <label for="myLastName"> Last Name </label>
+                    <input type="text" name="myLastName" id="myLastName">
+
+                    <label for="myEmail"> Email </label>
+                    <input type="text" name="myName" id="myEmail">
+
+                    <label for="myMobile"> Mobile </label>
+                    <input type="tel" name="myMobile" id="myMobile">
+
+                    <label for="myComment"> Comments </label>
+                    <textarea name="myComment" id="myComment" cols="20" rows="2"></textarea>
+                </fieldset>
+                
+                <input type="submit" value="Submit" class="inlineBlock">
+                <input type="reset" class="inlineBlock">
             </form>
 
              <footer>

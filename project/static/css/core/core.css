@@ -17,7 +17,6 @@
     margin-right: auto;
     margin-left: auto;
   }
-
 /*Responsive CSS*/
   @media (min-width: 768px) {
     .container {
@@ -701,7 +700,6 @@
       margin-left: 0;
     }
   }
-
 /*Generic alignment classes CSS*/
   .no-padding{
     padding:0;
@@ -757,7 +755,9 @@
   .invisible {
     visibility: hidden;
   }
-
+  .inlineBlock{
+    display: inline-block;
+  }
 /*Background colours*/
   .transparentBG{ background:rgba(200, 54, 54, 0);}
   .whiteBG{ background:white;}
@@ -768,7 +768,6 @@
   .greenBG{ background:green; }
   .blueBG{ background:blue;}
   .purpleBG{ background:purple;}
-
 /*Table core CSS*/
   table {
     background-color: transparent;
