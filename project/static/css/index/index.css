@@ -39,7 +39,8 @@ nav a:hover{ color: #656565; }
 
 nav img{
     width: 15%;
-    height: 15%;
+    height: 15%; 
+    /**/
 }
 
 footer{
