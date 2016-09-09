@@ -3,7 +3,6 @@
     border-radius: 5px;
 }
 
-
 #contact input, #contact textarea{
     border-radius: 5px;
     display:block;
@@ -14,13 +13,14 @@
     display:block;
     text-align:right;
     width:120px;
-    padding-right:00px;}
+    padding-right: 10px;}
 
-#contactUs {
+#contactUs{
     float: left;
-    width: 250px;
-    height: 350px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
+#locate{
+    padding-left: 20px;
+}

@@ -46,31 +46,49 @@
 
             <img src="../../static/img/contact/contactUs.png" id="contactUs">
 
-            <form name="contact" method="get" action="show_get.php">
+            <form name="contact" method="post" action="show_post.php">
 
                 <fieldset id="contact">
 
-                    <legend><h1>Contact Us</h2></legend>
+                    <legend><h2>Contact Us</h2></legend>
 
-                    <label for="myFirstName"> First Name </label>
-                    <input type="text" name="myFirstName" id="myFirstName">
+                    <label for="myFirstName"> *First Name </label>
+                    <input type="text" name="myFirstName" id="myFirstName" size="23" required>
 
-                    <label for="myLastName"> Last Name </label>
-                    <input type="text" name="myLastName" id="myLastName">
+                    <label for="myLastName"> *Last Name </label>
+                    <input type="text" name="myLastName" id="myLastName" size="23" required>
 
-                    <label for="myEmail"> Email </label>
-                    <input type="text" name="myName" id="myEmail">
+                    <label for="myEmail"> *Email </label>
+                    <input type="text" name="myName" id="myEmail" size="23" required>
 
                     <label for="myMobile"> Mobile </label>
-                    <input type="tel" name="myMobile" id="myMobile">
+                    <input type="tel" name="myMobile" id="myMobile" maxlength="8" size="23">
 
-                    <label for="myComment"> Comments </label>
-                    <textarea name="myComment" id="myComment" cols="20" rows="2"></textarea>
+                    <label for="select">Type of Enquiry</label>
+                    <select>
+                        <option value="general">General Enquiry</option>
+                        <option value="product">Product Matters</option>
+                        <option value="services">Services Matters</option>
+                        <option value="marketing">Marketing &amp; Advertising</option>
+                        <option value="partnership">Partnership &amp; Investment</option>
+                    </select><br><br>
+
+                    <label for="myComment"> *Comments </label>
+                    <textarea name="myComment" id="myComment" cols="40" rows="5" required></textarea>
                 </fieldset>
                 
                 <input type="submit" value="Submit" class="inlineBlock">
                 <input type="reset" class="inlineBlock">
             </form>
+
+            <div id="locate">
+                <h2>Locate Us</h2>
+                <table>
+                    
+                </table>
+            </div>
+            
+
 
              <footer>
 			 	<small>Mix &amp; Match is an online shop for custom-made clothes and accessories.</small>
