@@ -1,19 +1,39 @@
 #contact{
     margin-right: 20px;
     border-radius: 5px;
+    border: 1px solid #555555;
 }
 
 #contact input, #contact textarea{
-    border-radius: 5px;
     display:block;
-    margin-bottom:20px;
+    margin-bottom:5px;
+    width: 50%;
+}
+
+#contact select{
+    width: 53%;
+    margin-bottom: 5px;
 }
 #contact label{
     float: left;
     display:block;
     text-align:right;
+    text-transform: uppercase;
     width:120px;
-    padding-right: 10px;}
+    padding-right:10px;
+    /*centralise vertical alignment with input*/
+}
+
+.buttonBlack {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.buttonBlack:hover {
+    background-color: #555555;
+    color: white;
+}
 
 #contactUs{
     float: left;
@@ -21,6 +41,35 @@
     margin-right: 20px;
 }
 
-#locate{
-    padding-left: 20px;
+#locateUs{
+    box-shadow: 5px 5px 10px #555555;
+    width: 150px;
+    height: 150px;
 }
+
+#locate{
+    width: 100%;
+}
+
+#locateText{
+    text-align: center;
+    color: #555555;
+    text-transform: uppercase;
+}
+
+#locateImg{
+    text-align: left;
+}
+
+#company{
+    color: black;
+    font-size: 14px;
+}
+
+#locate a{text-decoration: none;}
+
+#locate a:link{ color: #555555; }
+
+#locate a:visited{ color: #555555; }
+
+#locate a:hover{ color: #800000; }

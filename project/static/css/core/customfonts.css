@@ -28,8 +28,8 @@ html {
 
 body {
     font-family: "Roboto-Regular";
-    font-weight: 300;
     font-style: normal;
+    font-size: 12px;
 }
 
 #mybold{
