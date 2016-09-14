@@ -51,26 +51,57 @@
                 <fieldset id="contact">
 
                     <legend><h1>Contact Us</h2></legend>
+                    <br>
 
-                    <label for="myFirstName"> First Name </label>
-                    <input type="text" name="myFirstName" id="myFirstName">
+                    <label for="myFirstName"> First Name<sup>*</sup> </label>
+                    <input type="text" name="myFirstName" id="myFirstName" required>
 
-                    <label for="myLastName"> Last Name </label>
-                    <input type="text" name="myLastName" id="myLastName">
+                    <label for="myLastName"> Last Name<sup>*</sup> </label>
+                    <input type="text" name="myLastName" id="myLastName" required>
 
-                    <label for="myEmail"> Email </label>
-                    <input type="text" name="myName" id="myEmail">
+                    <label for="myEmail"> Email<sup>*</sup> </label>
+                    <input type="text" name="myName" id="myEmail" required>
 
                     <label for="myMobile"> Mobile </label>
                     <input type="tel" name="myMobile" id="myMobile">
 
-                    <label for="myComment"> Comments </label>
-                    <textarea name="myComment" id="myComment" cols="20" rows="2"></textarea>
+                    <label for="myEnquiry"> Type of Enquiry </label>
+                    <select name="myEnquiry" id="myEnquiry">
+                        <option value="general">General Enquiry</option>
+                        <option value="product">Products/Services</option>
+                        <option value="shipping">Shipping</option>
+                        <option value="order">Order Status</option>
+                        <option value="website">Website</option>
+                    </select><br>
+
+                    <label for="myComment"> Comments<sup>*</sup> </label>
+                    <textarea name="myComment" id="myComment" cols="20" rows="6" required></textarea>
+
                 </fieldset>
                 
-                <input type="submit" value="Submit" class="inlineBlock">
-                <input type="reset" class="inlineBlock">
+                <button class="button buttonBlack inlineBlock" type="submit">SUBMIT</button>
+                <button class="button buttonBlack inlineBlock" type="reset">RESET</button>
+
             </form>
+
+            <h1>Locate Us</h1>
+            <table id="locate">
+                <tr>
+                    <td id="locateText">
+                        <b id="company">Mix &amp; Match Pte Ltd</b>
+                        <p id="description">Computer Lab II<br>
+                        50 Nanyang Avenue<br>
+                        Singapore 639798<br>
+                        <a href="#mailto:enquiry@mixnmatch.com">enquiry@mixnmatch.com</a><br>
+                        (+65) 8765 4321<br></p>
+
+                    </td>
+                    <td id="locateImg">
+                        <img src="../../static/img/contact/map.png" id="locateUs">
+                    </td>
+                </tr>
+            </table>
+
 
              <footer>
 			 	<small>Mix &amp; Match is an online shop for custom-made clothes and accessories.</small>

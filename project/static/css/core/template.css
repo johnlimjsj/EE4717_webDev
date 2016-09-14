@@ -49,6 +49,35 @@ footer{
     position:absolute;
     bottom:0px;
     width:100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+input{
+    border-radius: 0px;
+    padding: 5px;
+    text-align: center;
+}
+
+textarea{
+    border-radius: 0px;
+    padding: 5px;
+}
+
+sup{
+    color: red;
+}
+
+.button {
+    color: #555555;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 #page-wrapper{
