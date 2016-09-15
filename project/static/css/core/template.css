@@ -14,8 +14,12 @@ body{
     background-repeat: repeat;
     background-size: 5%
 }
+topnav > *, nav >*{
+    padding-right: 5%;
 
-nav{ 
+}
+
+topnav, nav{ 
     text-align: center;
     padding-left: 10px;
     background-color: white;
@@ -24,22 +28,23 @@ nav{
     padding-top: 10px;
 }
 
-nav a{ 
+topnav a, nav a{ 
     text-decoration: none;
     font-weight: bold;
     position:relative;
-    bottom:50px;
+    bottom:50px; 
 }
 
-nav a:link{ color: #000000; }
+topnav a:link,nav a:link{ color: #000000; }
 
-nav a:visited{ color: #000000; }
+topnav a:visited, nav a:visited{ color: #000000; }
 
-nav a:hover{ color: #656565; }
+topnav a:hover, nav a:hover{ color: #656565; }
 
-nav img{
+topnav img, nav img{
     width: 15%;
     height: 15%; 
+
 }
 
 footer{
