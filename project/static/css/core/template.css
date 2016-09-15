@@ -85,53 +85,112 @@ sup{
     cursor: pointer;
 }
 
-#page-wrapper{
-    width:80%;
-    height:100%;
-    margin:auto;
-    background:blue;
-}
-
-#left-collar-bg,
-#right-collar-bg{
-    background-size: 100% 100%;
-    background-attachment: scroll;
-}
-#left-collar-bg{ background-image: url(../../img/common/bg_collar_left.png); }
-#right-collar-bg{ background-image: url(../../img/common/bg_collar_right.png); }
-
-#section0,
-    #section1,
-    #section2,
-    #section3,
-    #section4,
-    #section5{
-        background-size: cover;
-        background-attachment: fixed;
-        padding: 1% 0 0 0;
+/*Tabs CSS*/
+    ul.tab {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
     }
 
-/*../img/indexPg/banner/header-banner.png*/
-    #section0{
-        background-image: url(../../img/indexPg/banner/header-banner_cmp.png);
-    }
-    #section1{
-        background-image: url(../../img/indexPg/about/about3_bg.png);
-    }
-    #section2{
-        background-image: url(../../img/indexPg/events/event2_bg.png);
-    }
-    #section3{
-        background-image: url(../../img/indexPg/featured/featured1_bg.png);
+    /* Float the list items side by side */
+    ul.tab li {float: left;}
+
+    /* Style the links inside the list items */
+    ul.tab li[tab] {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 17px;
     }
 
-    #section4{
-        background-image: url(../../img/indexPg/FAQ/faq_bg.png);
+    /* Change background color of links on hover */
+    ul.tab li[tab]:hover {
+        background-color: #ddd;
     }
 
-    #section5{
-        /*background-image: url(../../img/indexPg/FAQ/faq_bg.png);*/
+    /* Create an active/current tablink class */
+    ul.tab li[tab]:focus, .active {
+        background-color: #ccc;
     }
-    #section3 h1{
-        color: #000;
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
     }
+
+    .tabcontent {
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+    }
+
+    @-webkit-keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    @keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+
+/*Page CSS*/
+    #page-wrapper{
+        width:80%;
+        height:100%;
+        margin:auto;
+        background:blue;
+    }
+
+    leftcollar, rightcollar, #left-collar-bg,
+    #right-collar-bg{
+        background-size: 100% 100%;
+        background-attachment: scroll;
+    }
+    leftcollar, #left-collar-bg{ background-image: url(../../img/common/bg_collar_left.png); }
+    rightcollar, #right-collar-bg{ background-image: url(../../img/common/bg_collar_right.png); }
+
+    #section0,
+        #section1,
+        #section2,
+        #section3,
+        #section4,
+        #section5{
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 1% 0 0 0;
+        }
+
+    /*../img/indexPg/banner/header-banner.png*/
+        #section0{
+            background-image: url(../../img/indexPg/banner/header-banner_cmp.png);
+        }
+        #section1{
+            background-image: url(../../img/indexPg/about/about3_bg.png);
+        }
+        #section2{
+            background-image: url(../../img/indexPg/events/event2_bg.png);
+        }
+        #section3{
+            background-image: url(../../img/indexPg/featured/featured1_bg.png);
+        }
+
+        #section4{
+            background-image: url(../../img/indexPg/FAQ/faq_bg.png);
+        }
+
+        #section5{
+            /*background-image: url(../../img/indexPg/FAQ/faq_bg.png);*/
+        }
+        #section3 h1{
+            color: #000;
+        }
