@@ -40,7 +40,7 @@
 			let full_imgsrc = '<img src="../../static/img/shop/'+ thissrc +'.png">';
 			let display_title = $('<div>'+thistitle+'</div>').addClass('item-title');
 			let display_price = $('<div>'+'$'+thisprice+'</div>').addClass('item-price');
-			let addtocart_button = $('<button>Add to Cart</button>').attr('data-price',thisprice).attr('data-title',thistitle);
+			let addtocart_button = $('<button>Add to Cart</button>').addClass('buttonBlack').attr('data-price',thisprice).attr('data-title',thistitle);
 			let addtocart_container = $('<div></div>').addClass('center-div').append(addtocart_button);
 			$(this).append(full_imgsrc).append(display_title).append(display_price).append(addtocart_container);
 		});

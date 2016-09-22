@@ -8,20 +8,14 @@ item{
 
 item img{
 	width:100%;
-
 }
 
 item .item-title, item .item-price{
 	text-align: center;
-	padding:1%;
+	padding: 1%;
 }
 
 item .item-price{
-	color:red;
-	padding:1%;
-}
-
-item button{
-	color:blue;
-	font-size: 15px;
+	color: #8e8e8e;
+	padding: 1%;
 }
