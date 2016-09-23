@@ -77,7 +77,8 @@ function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
 
 // Test the format of the input email
-  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
+  // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
+  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
   // var patt = /^\w+@+\w+.+\w{2,4}$/
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
@@ -95,6 +96,32 @@ function chkEmail(event) {
 
 function chkDate(event) {
   // Get the target node of the event
+
+  var checknewfuture = function myself(input, today, index){
+    if(index==-1){ return false;}
+    if(input[index] >= today[index]){
+      return true;
+    }
+    else{
+      return myself(input, today, (index-1));
+    }
+  
+    
+   }
+
+   var factorial = function myself(n){
+    if(n<=1){
+      console.log("hit rock bottom")
+      return 1;
+
+    }
+    console.log(n);
+    return n*myself(n-1);
+   }
+
+   console.log(factorial(5));
+
+
   var myDateTarget = event.currentTarget;
   var myDate = myDateTarget.value.split('-');
   var today = new Date();
@@ -105,7 +132,8 @@ function chkDate(event) {
   
   // check if input is todays date
   var isToday = checktoday(myDate, today);
-  var isFuture = checkpast(myDate, today);
+  var isFuture = checknewfuture(myDate, today,2);
+  console.log("is it future: " +isFuture);
 
   if(isToday || isFuture){
     if(isToday){
@@ -152,6 +180,7 @@ function chkDate(event) {
       return false
     }
    }
+
 
    function checkpast(input, today){
     if(input[2] <= today[2]){
