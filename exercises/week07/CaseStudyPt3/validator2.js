@@ -18,7 +18,7 @@ dateNode.addEventListener("change", chkDate, false);
 function chkName(event) {
 
   var myNameTarget = event.currentTarget;
-  var patt = /^[a-zA-Z._-]+@[\w]{2,3}$/;
+  var patt = /^[a-zA-Z\s]+$/;
   var pos = myNameTarget.value.search(patt);
 
   if (pos != 0) {
@@ -68,7 +68,11 @@ function chkPassword(event) {
 
 function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
-  var patt = /^[\w.-]+@[\w]{1,}[.]{1}[\w]{2,4}$/;
+
+  // var patt = /^[\w.-]+@[\w]{1,}[.]{1}[\w]{2,4}$/;
+// Test the format of the input email
+  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
+  // var patt = /^\w+@+\w+.+\w{2,4}$/
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
     alert("The email you entered (" + myEmailTarget.value + ") is not in the correct form. \n" + "The correct form is: xxxx@domainname.com \n" + "Please go back and fix your email");
@@ -86,11 +90,12 @@ function chkDate(event) {
   
   // check if input is todays date
   var isToday = checktoday(myDate, today);
-  var isFuture = checkFuture(myDate, today, 2);
 
+  var isFuture = checkFuture(myDate, today, 2);
   if(isToday || isFuture){
     if(isToday){ alert("hey dont key in todays date you bugger"); }
     else{ alert("hey dont key in a date in the future you bugger");}
+
     returnFalse(myDateTarget);
   }
 
