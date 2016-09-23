@@ -68,11 +68,11 @@ function chkPassword(event) {
 
 function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
+  // pattern for multiple email extensions
+  var patt = /^[\w.-]+@[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
 
-  // var patt = /^[\w.-]+@[\w]{1,}[.]{1}[\w]{2,4}$/;
-// Test the format of the input email
-  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
-  // var patt = /^\w+@+\w+.+\w{2,4}$/
+  // pattern for normal email extension
+  // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
     alert("The email you entered (" + myEmailTarget.value + ") is not in the correct form. \n" + "The correct form is: xxxx@domainname.com \n" + "Please go back and fix your email");
