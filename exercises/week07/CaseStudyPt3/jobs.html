@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title> JavaJam Coffee House</title>
-<script type="text/javascript"  src="validator2.js" ></script>
+
 <link href="javajam.css" rel="stylesheet">
 </head>
 	 
@@ -14,16 +14,19 @@
     <ul>
 		<li><a href="index.html">Home</a></li>
 		<li><a href="menu.html">Menu</a></li>
-		<li><a href="music.html">Music</a></li>
+		<li><a href="music.html">chk</a></li>
 		<li><a href="jobs.html">Jobs</a></li>
 	</ul>
     </div>
 
 	<div id="content">
     <p>Want to work at JavaJam? Fill out the form below to start your application. Required fields are marked with an asterisk*</p>
-  		<form name="information" method="get" id="information" action="show_get.php">
+  		<form name="information" method="post" id="information" action="show_get.php">
 			<label for="myName"> *Name: </label> 
 			<input type="text" name ="myName" id="myName" required>
+
+			<label for="myPassword"> Password: </label>
+			<input type="password" name ="myPassword" id="myPassword">
 			
 			<label for="myEmail"> *E-mail: </label>
 			<input type="text" name ="myEmail" id="myEmail" required>
@@ -43,6 +46,9 @@
 	<small><a href="mailto:robert@naquila.com">robert@naquila.com</a>
 	</div>
 	</div>
+	<script type="text/javascript"  src="validator2.js" ></script>
 	<script type="text/javascript"  src="validator2r.js"></script> 
+
+
 </body>
 </html>
