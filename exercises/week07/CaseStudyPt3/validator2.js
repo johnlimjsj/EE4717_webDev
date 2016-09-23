@@ -4,23 +4,25 @@
 // ********************************************************** //
 // The event handler function for the name text box
 
-function hello(){
 
-}
+var nameNode = document.getElementById("myName");
+var passwordNode = document.getElementById("myPassword");
+var emailNode = document.getElementById("myEmail");
+var dateNode = document.getElementById("myDate");
+nameNode.addEventListener("change", chkName, false);
+passwordNode.addEventListener("change", chkPassword, false);
+emailNode.addEventListener("change", chkEmail, false);
+dateNode.addEventListener("change", chkDate, false);
+
+
 function chkName(event) {
 
-// Get the target node of the event
   var myNameTarget = event.currentTarget;
-
-// Test the format of the input name 
   var patt = /^[a-zA-Z\s]+$/;
-  // var pos = myName.value.search(/^[A-Z][a-z]+ ?[A-Z][a-z]+ ?[A-Z][a-z]$/);
   var pos = myNameTarget.value.search(patt);
 
   if (pos != 0) {
-    alert("The name you entered (" + myNameTarget.value + 
-          ") is invalid. \n" +
-          "The name should only contain alphabet characters and character spaces.");
+    alert("The name you entered (" + myNameTarget.value + ") is invalid. \n" + "The name should only contain alphabet characters and character spaces.");
     returnFalse(myNameTarget);
   } 
 }
@@ -37,7 +39,7 @@ function chkPassword(event) {
   var myPasswordVal = myPasswordTarget.value;
   var myPasswordLength = myPasswordVal.length;
 
-  var anUpperCase = /[A-Z]{2,}/;
+  var anUpperCase = /^([A-Z]+[a-z]){2,}S/;
   var aLowerCase = /[a-z]/; 
   var aNumber = /[0-9]{1,}/;
   var aSpecial = /[!|@|#|$|%|^|&|*|(|)|-|_]{1,}/;
@@ -59,22 +61,16 @@ function chkPassword(event) {
     if(!isLong){ outputMsg += pwStrengthMsg.length}
     if(!isNum){ outputMsg += pwStrengthMsg.number}
     alert(outputMsg);
-
     returnFalse(myPasswordTarget);
-  }
-
-
-    
-   
+  }   
 }
 
-// ********************************************************** //
-// The event handler function for the email text box
 
 function chkEmail(event) {
-
-// Get the target node of the event
   var myEmailTarget = event.currentTarget;
+  // pattern for multiple email extensions
+  var patt = /^[\w.-]+@[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
+
 
 // Test the format of the input email
   // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
@@ -82,17 +78,10 @@ function chkEmail(event) {
   // var patt = /^\w+@+\w+.+\w{2,4}$/
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
-    alert("The email you entered (" + myEmailTarget.value +
-          ") is not in the correct form. \n" +
-          "The correct form is: xxxx@domainname.com \n" +
-          "Please go back and fix your email");
-
+    alert("The email you entered (" + myEmailTarget.value + ") is not in the correct form. \n" + "The correct form is: xxxx@domainname.com \n" + "Please go back and fix your email");
     returnFalse(myEmailTarget);
   } 
 }
-
-// ********************************************************** //
-// The event handler function for the date input
 
 function chkDate(event) {
   // Get the target node of the event
@@ -122,11 +111,11 @@ function chkDate(event) {
    console.log(factorial(5));
 
 
+
   var myDateTarget = event.currentTarget;
   var myDate = myDateTarget.value.split('-');
   var today = new Date();
 
-  // parse dates into integers
   today = parseTodayDate(today);
   myDate = parseInputDate(myDate);
   
@@ -135,17 +124,12 @@ function chkDate(event) {
   var isFuture = checknewfuture(myDate, today,2);
   console.log("is it future: " +isFuture);
 
+  var isFuture = checkFuture(myDate, today, 2);
   if(isToday || isFuture){
-    if(isToday){
-      alert("hey dont key in todays date you bugger");
-    }
-
-    else{
-      alert("hey dont key in a date in the past you bugger");
-    }
+    if(isToday){ alert("hey dont key in todays date you bugger"); }
+    else{ alert("hey dont key in a date in the future you bugger");}
 
     returnFalse(myDateTarget);
-
   }
 
   function parseInputDate(date){
@@ -171,16 +155,17 @@ function chkDate(event) {
     }
    }
 
-   function checkfuture(input, today){
-    if(input[2] >= today[2]){
-      if(input[1] >= today[1])
-        if(input[0] > today[0])
-          return true;
-    
-      return false
-    }
-   }
+  function checkFuture(input, today, index){
+    if(index<0){return false;}
+    if(input[index] > today[index]) {return true;}
+    return checkFuture(input, today, index-1)
+  }
 
+  function checkPast(input, today, index){
+    if(index<0){return false;}
+    if(input[index] < today[index]) {return true;}
+    return checkFuture(input, today, index-1)
+  }
 
    function checkpast(input, today){
     if(input[2] <= today[2]){
