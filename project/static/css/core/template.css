@@ -96,6 +96,17 @@ button {
     color: white;
 }
 
+.buttonBlackInverse {
+    background-color: #555555;
+    color: white;
+    border: 2px solid #555555;
+}
+
+.buttonBlackInverse:hover {
+    background-color: white;
+    color: black;
+}
+
 /*Tabs CSS*/
     ul.tab {
         list-style-type: none;
