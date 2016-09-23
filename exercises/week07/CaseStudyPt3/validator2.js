@@ -13,7 +13,7 @@ function chkName(event) {
   var myNameTarget = event.currentTarget;
 
 // Test the format of the input name 
-  var patt = /^[a-zA-Z._-]+@[\w]{2,3}$/;
+  var patt = /^[a-zA-Z\s]+$/;
   // var pos = myName.value.search(/^[A-Z][a-z]+ ?[A-Z][a-z]+ ?[A-Z][a-z]$/);
   var pos = myNameTarget.value.search(patt);
 
