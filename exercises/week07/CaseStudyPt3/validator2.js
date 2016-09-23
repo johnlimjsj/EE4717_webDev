@@ -77,7 +77,8 @@ function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
 
 // Test the format of the input email
-  var patt = /^[\w]+@[\w]+.[\w]{2,4}$/;
+  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
+  // var patt = /^\w+@+\w+.+\w{2,4}$/
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
     alert("The email you entered (" + myEmailTarget.value +
@@ -104,7 +105,7 @@ function chkDate(event) {
   
   // check if input is todays date
   var isToday = checktoday(myDate, today);
-  var isFuture = checkfuture(myDate, today);
+  var isFuture = checkpast(myDate, today);
 
   if(isToday || isFuture){
     if(isToday){
@@ -112,7 +113,7 @@ function chkDate(event) {
     }
 
     else{
-      alert("hey dont key in a date in the future you bugger");
+      alert("hey dont key in a date in the past you bugger");
     }
 
     returnFalse(myDateTarget);
