@@ -70,8 +70,6 @@ function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
   // pattern for multiple email extensions
   var patt = /^[\w.-]+@[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
-
-
 // Test the format of the input email
   // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
   var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
@@ -102,8 +100,8 @@ function chkDate(event) {
     if(n<=1){
       console.log("hit rock bottom")
       return 1;
-
     }
+    
     console.log(n);
     return n*myself(n-1);
    }
