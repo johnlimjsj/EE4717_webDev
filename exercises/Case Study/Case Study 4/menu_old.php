@@ -57,24 +57,27 @@
   '<form id = "myform" method="post">
     <table>';
   if($result_jamjam){
-    $openinputstring = '<td> <input type="text" size="3" value = "';
+    $openinputstring = '<td> <form method="post" action="" > ';
     $nameinputstring = '';
-    $closeinputstring = '"></td> ';
+    $closeinputstring = '
+                        <input type="text"size="3" style="background: white;"><input  name="add_to_cart" type="submit" value="Add to cart" class="btnAddAction" style="font-size: 10px; "/>  
+                        </form>
+                        </td> ';
     $i=0;
     while($row = $result_jamjam->fetch_assoc()){
       echo 
-        '<tr id = " ' . $cf[$i] . ' ">'
-          . '<td> <input type="checkbox" name=" ' . $cf[$i] . ' "></td>'
+        '<tr id = " ' . $cf[$i] . ' "> '
+        // . '<td>' . $row['C_ID'] . '</td>'
           . '<td>' . $row[NAME] . '</td>'
-          . $openinputstring . $row[P_SINGLE] . $closeinputstring = '"></td> '
-          . $openinputstring . $row[P_DOUBLE] . $closeinputstring = '"></td> '
-          . $openinputstring . $row[P_ENDLESS] . $closeinputstring = '"></td> '
+          . $openinputstring . $row[P_SINGLE] . $closeinputstring 
+          . $openinputstring . $row[P_DOUBLE] . $closeinputstring
+          . $openinputstring . $row[P_ENDLESS] . $closeinputstring
         . '</tr>';   
 
         $i++;
     }  
   }
-  echo '<tr> <td> <input type="submit" value = "Update and Submit">  </td></tr>';
+  echo '<tr> <td> <input type="submit" value = "Submit Order">  </td></tr>';
   echo 
   ' </table>
   </form>';
