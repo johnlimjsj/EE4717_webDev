@@ -39,7 +39,8 @@ function chkPassword(event) {
   var myPasswordVal = myPasswordTarget.value;
   var myPasswordLength = myPasswordVal.length;
 
-  var anUpperCase = /^([A-Z]+[a-z]){2,}S/;
+  // var anUpperCase = /^([A-Z]+[a-z]){2,}S/;
+  var anUpperCase = /^(.*?[A-Z]){2,}/;
   var aLowerCase = /[a-z]/; 
   var aNumber = /[0-9]{1,}/;
   var aSpecial = /[!|@|#|$|%|^|&|*|(|)|-|_]{1,}/;
@@ -69,46 +70,30 @@ function chkPassword(event) {
 function chkEmail(event) {
   var myEmailTarget = event.currentTarget;
   // pattern for multiple email extensions
-  var patt = /^[\w.-]+@[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
+  // this is the Regex for a standard email domain that does not accept unicode
+  var patt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+  // var patt = /^[\w.-]+@[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/; // This is the ReGex for the standard email domain
 // Test the format of the input email
   // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}[.]{1}[\w]{2,4}$/;
-  var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/;
-  // var patt = /^\w+@+\w+.+\w{2,4}$/
+  // this is the ReGex for the xxx@yyy.zzz.com form
+  // var patt = /^[\w.-_]{1,}[@]{1}[\w]{1,}([.]{1}[\w]{1,}){1,3}[.]{1}[\w]{2,4}$/; 
+
   var pos = myEmailTarget.value.search(patt);
   if (pos != 0) {
-    alert("The email you entered (" + myEmailTarget.value + ") is not in the correct form. \n" + "The correct form is: xxxx@domainname.com \n" + "Please go back and fix your email");
+    alert("The email you entered (" + myEmailTarget.value + ") is not in the correct form. \n" + "The correct form is: xxxx@yyy.zzz.com \n" + "Please go back and fix your email");
     returnFalse(myEmailTarget);
   } 
 }
 
 function chkDate(event) {
   // Get the target node of the event
-
   var checknewfuture = function myself(input, today, index){
     if(index==-1){ return false;}
-    if(input[index] >= today[index]){
+    if(input[index] >= today[index])
       return true;
-    }
-    else{
+    else
       return myself(input, today, (index-1));
-    }
-  
-    
    }
-
-   var factorial = function myself(n){
-    if(n<=1){
-      console.log("hit rock bottom")
-      return 1;
-    }
-    
-    console.log(n);
-    return n*myself(n-1);
-   }
-
-   console.log(factorial(5));
-
-
 
   var myDateTarget = event.currentTarget;
   var myDate = myDateTarget.value.split('-');
@@ -118,14 +103,14 @@ function chkDate(event) {
   myDate = parseInputDate(myDate);
   
   // check if input is todays date
-  var isToday = checktoday(myDate, today);
+  var isToday = checkToday(myDate, today);
   var isFuture = checknewfuture(myDate, today,2);
   console.log("is it future: " +isFuture);
 
-  var isFuture = checkFuture(myDate, today, 2);
-  if(isToday || isFuture){
-    if(isToday){ alert("hey dont key in todays date you bugger"); }
-    else{ alert("hey dont key in a date in the future you bugger");}
+  var isPast = checkPast(myDate, today, 2);
+  if(isToday || isPast){
+    if(isToday){ alert("You cannot start today"); }
+    else{ alert("You cannot start on a past date");}
 
     returnFalse(myDateTarget);
   }
@@ -143,7 +128,7 @@ function chkDate(event) {
     var year = date.getFullYear();
     return [day, month, year]
   }
-   function checktoday(input, today){
+   function checkToday(input, today){
     if(input[2] == today[2]){
       if(input[1] == today[1])
         if(input[0] == today[0])
@@ -162,18 +147,9 @@ function chkDate(event) {
   function checkPast(input, today, index){
     if(index<0){return false;}
     if(input[index] < today[index]) {return true;}
-    return checkFuture(input, today, index-1)
+    return checkPast(input, today, index-1)
   }
 
-   function checkpast(input, today){
-    if(input[2] <= today[2]){
-      if(input[1] <= today[1])
-        if(input[0] < today[0])
-          return true;
-    
-      return false
-    }
-   }
 }
 
 function returnFalse(obj) {
