@@ -10,3 +10,9 @@ show tables;
 
 // to view an entire table
 select * from jamjamproducts;
+
+// to give a database rights from php
+GRANT INSERT, SELECT, DELETE, UPDATE ON database-name.*
+TO ‘user’@‘host’
+IDENTIFIED BY ‘password’;
+
