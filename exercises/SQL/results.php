@@ -18,14 +18,14 @@
     $size = count($bookpricearray);
     echo var_dump($bookpricearray);
     echo $size;
-    echo '+++++++' . $bookpricearray[0]['isbn'] . '+++++++';
-    for($x=0; $x<$size; $x++){
+    echo '+++++++' . $bookpricearray['isbn'] . '+++++++';
+    // for($x=0; $x<$size; $x++){
      $update = " UPDATE books SET price =" . 
-     $bookpricearray[$x]['price'] . 
-     " WHERE isbn = '" . $bookpricearray[$x]['isbn'] . "'";
+     $bookpricearray['price'] . 
+     " WHERE isbn = '" . $bookpricearray['isbn'] . "'";
      echo $update;
      $result_jamjam = $db_books->query($update);
-    }
+    // }
   }
   else{
     $_SESSION["searchtype"]=$_POST['searchtype'];
@@ -66,8 +66,8 @@
 
      echo '
      <form action="' . $_SERVER['PHP_SELF'] . '" method="post">
-        <input name="mybooks[' . $i . '][isbn] " type="hidden" value="' . $row['isbn'] . '"/>
-        <input name="mybooks[' . $i . '][price] " type="text" />
+        <input id="[' . $i . ']" name="mybooks[isbn] " type="hidden" value="' . $row['isbn'] . '"/>
+        <input id="[' . $i . ']" name="mybooks[price] " type="text" />
         <input value="Update Price" type="submit" />
      </form>
       ';
