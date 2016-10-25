@@ -5,25 +5,30 @@
   <title>Book-O-Rama Search Results</title>
 </head>
 <body>
+<a href="search.html"> Return </a>
+
 <h1>Book-O-Rama Search Results</h1>
 
 <?php include 'php/connect_DB.php'; ?>
 
+<?php 
 
+
+
+?>
 <?php
 
   if(isset($_POST['mybooks'])){
     // $update = "SELECT "
     $bookpricearray = $_POST['mybooks'];
-    $size = count($bookpricearray);
-    echo var_dump($bookpricearray);
-    echo $size;
-    echo '+++++++' . $bookpricearray['isbn'] . '+++++++';
+    // $size = count($bookpricearray);
+    // echo var_dump($bookpricearray);
+    // echo $size;
+    // echo '+++++++' . $bookpricearray['isbn'] . '+++++++';
     // for($x=0; $x<$size; $x++){
      $update = " UPDATE books SET price =" . 
      $bookpricearray['price'] . 
      " WHERE isbn = '" . $bookpricearray['isbn'] . "'";
-     echo $update;
      $result_jamjam = $db_books->query($update);
     // }
   }
