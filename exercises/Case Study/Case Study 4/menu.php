@@ -4,6 +4,7 @@
 <title> JavaJam Coffee House </title>
 <meta charset="utf-8">
 <link href="javajam.css" rel="stylesheet">
+<script src="js/jquery-1.11.3.min.js"></script>
 
 <?php include 'php/define_connectdb.php'; ?>
 
@@ -54,14 +55,21 @@
   // }
 
  echo 
-  '<form id = "myform" method="post">
-    <table>';
+  '
+    <table>
+      <tr>
+        <th> Coffee type </th>
+        <th> Single </th>
+        <th> Double </th>
+        <th> Endless </th>
+      </tr>
+    ';
   if($result_jamjam){
-    $openinputstring = '<td> <form method="post" action="" > ';
+    $openinputstring = '<td> <span> ';
     $nameinputstring = '';
     $closeinputstring = '
-                        <input type="text"size="3" style="background: white;"><input  name="add_to_cart" type="submit" value="Add to cart" class="btnAddAction" style="font-size: 10px; "/>  
-                        </form>
+                        </span>
+                        <input  style="background: white; font-size:20px;" name="add_to_cart" type="submit" value="Add to cart" class="btnAddAction" style="font-size: 10px; "/>  
                         </td> ';
     $i=0;
     while($row = $result_jamjam->fetch_assoc()){
@@ -77,45 +85,32 @@
         $i++;
     }  
   }
-  echo '<tr> <td> <input type="submit" value = "Submit Order">  </td></tr>';
+  // echo '<tr> <td> <input type="submit" value = "Submit Order">  </td></tr>';
   echo 
   ' </table>
-  </form>';
+  ';
 ?>
 
 
+<p> Total order amount: $<span id="totalprice">0</span></p>
+<script>
 
-    <form action="coffeemenu.php" method="post">
-  		<table> 
-  			<tbody>
-  				<tr> 
-            <td> <input type="checkbox" name="justjava"> </td>
-  					<th> <?php echo $coffee['justjava']->NAME ?> </th>
-  					<td> Regular house blend, decaffeinated coffee, or flavor of the day. <br> Endless Cup 
-            $ <?php echo $coffee['justjava']->P_ENDLESS ?>
-            </td> 
-  				</tr>
-  				<tr> 
-            <td> <input type="checkbox" name="cafeaulait"> </td>
-  					<th> <?php echo $coffee['cafeaulait']->NAME ?> </th>
-  					<td> House blended coffee infused into a smooth, steamed milk. 
-            <br> Single $<?php echo $coffee['cafeaulait']->P_SINGLE ?> &nbsp; 
-            Double $<?php echo $coffee['cafeaulait']->P_DOUBLE ?> </td> 
-  				</tr>
-  				<tr> 
-            <td> <input type="checkbox" name="icedcappucino"> </td>
-  					<th> <?php echo $coffee['icedcappucino']->NAME ?> </th>
-  					<td> Sweet espresso blended with icy-cold milk and served in a chilled glass. 
-            <br> Single $<?php echo $coffee['icedcappucino']->P_SINGLE ?>
-             &nbsp; Double $<?php echo $coffee['icedcappucino']->P_DOUBLE ?> </td> 
-  				</tr>
-          <tr> 
-            <td> <input type="submit" value="Submit Order"></td></td>
-          </tr>
-  			</tbody>
-  		</table>
-    </form>
-		
+
+var totalprice = 0;
+$('input[name="add_to_cart"]').click(function(){
+
+var value = $(this).prev().text();
+var value = parseFloat(value);
+ totalprice+=value;
+
+$('#totalprice').html(totalprice);
+
+});
+
+
+</script>
+
+
 	</div>	   
 		   
 	<div id="footer">

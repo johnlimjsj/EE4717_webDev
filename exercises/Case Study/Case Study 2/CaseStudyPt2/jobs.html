@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title> JavaJam Coffee House</title>
-
+<meta charset="utf-8">
 <link href="javajam.css" rel="stylesheet">
 </head>
 	 
@@ -13,29 +13,26 @@
     <div id="nav">
     <ul>
 		<li><a href="index.html">Home</a></li>
-		<li><a href="menu.php">Menu</a></li>
-		<li><a href="music.html">chk</a></li>
+		<li><a href="menu.html">Menu</a></li>
+		<li><a href="music.html">Music</a></li>
 		<li><a href="jobs.html">Jobs</a></li>
 	</ul>
     </div>
 
 	<div id="content">
     <p>Want to work at JavaJam? Fill out the form below to start your application. Required fields are marked with an asterisk*</p>
-  		<form name="form_information" method="post" id="form_information" action="show_get.php">
+  		<form name="information" method="get" id="information" action="show_get.php">
 			<label for="myName"> *Name: </label> 
-			<input type="text" name ="myName" id="myName" required>
-
-			<label for="myPassword"> Password: </label>
-			<input type="password" name ="myPassword" id="myPassword">
+			<input type="text" name ="myName" id="myName">
 			
 			<label for="myEmail"> *E-mail: </label>
-			<input type="text" name ="myEmail" id="myEmail" required>
+			<input type="text" name ="myName" id="myName">
 			
 			<label for="myDate"> Start Date: </label>
 			<input type="date" name ="myDate" id="myDate">
 			
 			<label for="myExperience"> *Experience: </label>
-			<textarea name="myExperience" id="myExperience" cols="20" rows="2" required> </textarea>
+			<textarea name="myExperience" id="myExperience" cols="20" rows="2"> </textarea>
 			
 			<input type="submit" value="Apply Now"> 
 		</form>
@@ -46,9 +43,5 @@
 	<small><a href="mailto:robert@naquila.com">robert@naquila.com</a>
 	</div>
 	</div>
-	<script type="text/javascript"  src="js/validator2.js" ></script>
-	<!-- <script type="text/javascript"  src="validator2r.js"></script>  -->
-
-
 </body>
 </html>
