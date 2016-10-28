@@ -24,7 +24,9 @@ City varchar(255)
 );
 
 // to give a database rights from php
-GRANT INSERT, SELECT, DELETE, UPDATE ON database-name.*
-TO ‘user’@‘host’
-IDENTIFIED BY ‘password’;
+
+GRANT INSERT, SELECT, DELETE, UPDATE ON MixAndMatch.*
+TO 'ee4717'@'localhost'
+IDENTIFIED BY 'johnandrobert';
+
 
