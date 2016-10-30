@@ -12,3 +12,17 @@ grant select on f37ee.*
              to 'webauth' 
              identified by 'webauth';
 flush privileges;
+
+
+
+CREATE TABLE users 
+(
+	username varchar(20), 
+	password varchar(40)
+);
+
+
+insert into users values
+(
+	
+)
