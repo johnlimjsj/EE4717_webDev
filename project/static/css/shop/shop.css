@@ -45,3 +45,17 @@ div.item .item-price{
 div.item p{
 	text-align: center;
 }
+
+/*For the browse.php page*/
+ul.search li{
+	display: inline-block;
+}
+
+#searchoptionslink{
+	margin-left:40px;
+}
+
+#searchoptionslink:hover{
+	color: blue;
+	text-decoration: underline;
+}
