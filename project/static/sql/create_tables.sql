@@ -1,5 +1,5 @@
 
-CREATE DATABASE MisAndMatch;
+CREATE DATABASE MixAndMatch;
 
 create table Customers
 (  
@@ -34,17 +34,18 @@ create table Orders
 ( 
 	id int unsigned not null auto_increment primary key,
 	customer_id int unsigned not null,
-	thedate date,
+	thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	delivery_add_id int unsigned not null,
-	status ENUM('Processing','Shipped','Arrived'),
+	status ENUM('Pending','Processing','Shipped','Arrived'),
 	totalcost float not null,
 	FOREIGN KEY(customer_id) REFERENCES Customers(id),
 	FOREIGN KEY(delivery_add_id) REFERENCES Delivery_Addresses(id)
 );
 
 ALTER TABLE Orders
-MODIFY COLUMN thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
+MODIFY COLUMN status ENUM('Pending','Processing','Shipped','Arrived');
 
+INSERT INTO Order(customer_id, delivery_add_id, status, totalcost) VALUES (1, 1, 'Pending' , 0);
 
 create table Order_items
 ( 
@@ -55,6 +56,12 @@ create table Order_items
 	FOREIGN KEY(order_id) REFERENCES Orders(id),
 	FOREIGN KEY(product_id) REFERENCES Products(id)
 );
+ALTER TABLE Order_items
+  DROP FOREIGN KEY order_items_ibfk_1;
+
+ALTER TABLE Order_items
+  ADD FOREIGN KEY (order_id) REFERENCES Orders(id);
+
 
 create table Categories
 ( 
@@ -64,21 +71,40 @@ create table Categories
 	image char(50)
 );
 
+create table Colours
+( 
+	id int unsigned not null auto_increment primary key,
+	name char(20) not null
+);
+
+create table Style
+( 
+	id int unsigned not null auto_increment primary key,
+	name char(30) not null
+);
+
 ALTER TABLE Categories
 MODIFY COLUMN name ENUM('Jacket','Shirt','Pants','Shoes','Tie') not null;
 
-ALTER TABLE Order_items
-ADD FOREIGN KEY(product_id) REFERENCES Products(id);
+ALTER TABLE Products
+ADD FOREIGN KEY(colour_id) REFERENCES Colours(id);
+
+UPDATE Products SET colour_id=1 WHERE id=1;
 
 create table Products
 ( 
 	id int unsigned not null auto_increment primary key,
 	cat_id int unsigned not null,
+	colour_id int unsigned not null,
+	style_id int unsigned not null,
 	name char(100) not null,
 	description char(200) not null,
 	image char(50),
 	price float not null,
-	FOREIGN KEY(cat_id) REFERENCES Categories(id)
+	FOREIGN KEY(cat_id) REFERENCES Categories(id),
+	FOREIGN KEY(colour_id) REFERENCES Colours(id),
+	FOREIGN KEY(style_id) REFERENCES Style(id)
+
 );
 
 

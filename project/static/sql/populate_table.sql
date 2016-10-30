@@ -44,73 +44,32 @@ INSERT INTO Categories VALUES
   (4, "Shoes", "You need ot wear nice shoes to walk", "shoes"),
   (5, "Tie", "Something that goes around your neck", "tie");
 
+INSERT INTO Style VALUES
+  (1, "Modern"),
+  (2, "Retro"),
+  (3, "Oldies");
+
+INSERT INTO Colours VALUES
+  (1, "Red"),
+  (2, "Orange"),
+  (3, "Yellow"),
+  (4, "Green"),
+  (5, "Blue"),
+  (6, "Purple"),
+  (7, "Black"),
+  (8, "White");
+
 INSERT INTO Products VALUES
-  (1, 2, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
-  (2, 3, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
-  (3, 5, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
+  (1, 2, 4, 1, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
+  (2, 3, 5, 2, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
+  (3, 5, 2, 3, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
+  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "tie_sunny", 32.67),
+  (5, 2, 1, 1, "Blue Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
 
 INSERT INTO Products(cat_id, name, description, image, price) VALUES
 (2, "Red Shirt", "this is basically a red shirt", "shirt_red", 46.00);
 
-UPDATE products 
-SET image='pants_blue'
-WHERE id=2;
 
 
-UPDATE Order_items oi
-SET quantity= oi.quantity + 3
-WHERE order_id=4 
-AND product_id =3;
-
-CASE ROW_COUNT()
-  WHEN 0 THEN
-    INSERT INTO Order_items (order_id, product_id, quantity) VALUES (4, 3, 2); 
-END CASE;
-
-INSERT INTO Order_items (order_id, product_id, quantity)
-VALUES
-(
-   (CASE order_id WHEN '' THEN NULL ELSE order_id END),
-   (CASE product_id WHEN '' THEN NULL ELSE product_id END),
-   (CASE quantity WHEN '' THEN NULL ELSE quantity END)
-);
-
-
-
-
-IF ROW_COUNT() = 0 THEN
-  INSERT INTO Order_items (order_id, product_id, quantity) VALUES
-  (4, 3, 2);
-END IF;
-
-IF(ROW_COUNT() = 0, TRUE,FALSE)
-          INSERT INTO Order_items (order_id, product_id, quantity) VALUES (4, 3, 2);
-
-
-MERGE BookInventory bi
-USING BookOrder bo
-ON bi.TitleID = bo.TitleID
-WHEN MATCHED AND
-  bi.Quantity + bo.Quantity = 0 THEN
-  DELETE
-WHEN MATCHED THEN
-  UPDATE
-  SET bi.Quantity = bi.Quantity + bo.Quantity;
- 
-SELECT * FROM BookInventory;
-
-
-SET final_price= CASE
-   WHEN currency=1 THEN 0.81*final_price
-   ELSE final_price
-END
-
-BEGIN
-
-    IF ROW_COUNT() = 0 THEN
- INSERT INTO Order_items (order_id, product_id, quantity) VALUES (4, 3, 2)
-    END IF;
- 
-END;
 
 
