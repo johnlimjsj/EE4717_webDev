@@ -19,3 +19,29 @@ item .item-price{
 	color: #8e8e8e;
 	padding: 1%;
 }
+
+div.item{
+	position: relative;
+	width:20%;
+	display:inline-block;
+	padding:2%;
+	min-width:100px;
+}
+
+div.item img{
+	width:100%;
+}
+
+div.item .item-title, div.item .item-price{
+	text-align: center;
+	padding: 1%;
+}
+
+div.item .item-price{
+	color: #8e8e8e;
+	padding: 1%;
+}
+
+div.item p{
+	text-align: center;
+}

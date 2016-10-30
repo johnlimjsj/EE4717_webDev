@@ -10,9 +10,6 @@
 
 <?php include 'php/define_connectdb.php'; ?>
 
-
-
-
 <body> 
   <div id="wrapper">
    <h1 id="header"> <img src="img/javalogo.gif" width="620" height="117" title="JavaJam Coffee House"> </h1>
