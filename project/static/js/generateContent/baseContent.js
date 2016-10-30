@@ -35,13 +35,13 @@
               alt: 'Logo'
             });
 
-        let homelink = $('<a>Home</a>').attr('href','#index.html');
-        let aboutlink = $('<a>About</a>').attr('href','#about.html');
-        let shoplink = $('<a>Shop</a>').attr('href','#shop.html');
+        let homelink = $('<a>Home</a>').attr('href','../../templates/index/index.html');
+        let aboutlink = $('<a>About</a>').attr('href','../../templates/about/about.html');
+        let shoplink = $('<a>Shop</a>').attr('href','../../templates/shop/browse.php');
 
 
         let gallerylink = $('<a>Gallery</a>').attr('href','#gallery.html');
-        let contactlink = $('<a>Contact</a>').attr('href','#contact.html');
+        let contactlink = $('<a>Contact</a>').attr('href','../../templates/contact/contact.html');
 
         return nav.append(homelink).append(aboutlink).append(shoplink).append(img).append(gallerylink).append(contactlink);
         
