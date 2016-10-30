@@ -64,7 +64,7 @@ INSERT INTO Products VALUES
   (1, 2, 4, 1, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
   (2, 3, 5, 2, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
   (3, 5, 2, 3, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
-  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "tie_sunny", 32.67),
+  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "shirt_blue", 32.67),
   (5, 2, 1, 1, "Red Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
 
 
