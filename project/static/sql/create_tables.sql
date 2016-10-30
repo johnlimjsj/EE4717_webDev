@@ -42,11 +42,6 @@ create table Orders
 	FOREIGN KEY(delivery_add_id) REFERENCES Delivery_Addresses(id)
 );
 
-ALTER TABLE Orders
-MODIFY COLUMN status ENUM('Pending','Processing','Shipped','Arrived');
-
-INSERT INTO Order(customer_id, delivery_add_id, status, totalcost) VALUES (1, 1, 'Pending' , 0);
-
 create table Order_items
 ( 
 	id int unsigned not null auto_increment primary key,
@@ -61,7 +56,6 @@ ALTER TABLE Order_items
 
 ALTER TABLE Order_items
   ADD FOREIGN KEY (order_id) REFERENCES Orders(id);
-
 
 create table Categories
 ( 
@@ -82,14 +76,6 @@ create table Style
 	id int unsigned not null auto_increment primary key,
 	name char(30) not null
 );
-
-ALTER TABLE Categories
-MODIFY COLUMN name ENUM('Jacket','Shirt','Pants','Shoes','Tie') not null;
-
-ALTER TABLE Products
-ADD FOREIGN KEY(colour_id) REFERENCES Colours(id);
-
-UPDATE Products SET colour_id=1 WHERE id=1;
 
 create table Products
 ( 

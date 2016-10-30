@@ -22,10 +22,11 @@ INSERT INTO Delivery_Addresses VALUES
 INSERT INTO Orders(id, customer_id, thedate, delivery_add_id, status, totalcost) VALUES
   (1, 1, '2014-11-22', 1, 'Processing', 213.5),
   (2, 2, '2014-12-08', 2, 'Processing', 333.15),
-  (3, 3, '2013-07-18', 3, 'Shipped', 245.78);
+  (3, 3, '2013-07-18', 3, 'Shipped', 245.78),
+  (4, 1, '2016-10-27', 1, 'Processing', 65.5),
+  (5, 1, '2016-10-28', 1, 'Pending', 0),
+  (6, 2, '2016-10-28', 1, 'Pending', 0);
 
-INSERT INTO Orders(customer_id, delivery_add_id, status, totalcost) VALUES
-  (1, 1, 'Processing', 65.5);
 
 
 INSERT INTO Order_items(id, order_id, product_id, quantity) VALUES
