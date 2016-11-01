@@ -1,7 +1,7 @@
 
 <?php
-  DEFINE('DB_USER', 'ee4717');
-  DEFINE('DB_PASSWORD', 'johnandrobert');
+  DEFINE('DB_USER', 'root');
+  DEFINE('DB_PASSWORD', 'pepper25');
   DEFINE('DB_HOST', 'localhost');
   DEFINE('DB_NAME', 'MixAndMatch');
 

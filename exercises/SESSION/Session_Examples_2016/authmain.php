@@ -7,26 +7,19 @@ if (isset($_POST['userid']) && isset($_POST['password']))
   // if the user has just tried to log in
   $userid = $_POST['userid'];
   $password = $_POST['password'];
-/*
-  $db_conn = new mysqli('localhost', 'webauth', 'webauth', 'auth');
 
-  if (mysqli_connect_errno()) {
-   echo 'Connection to database failed:'.mysqli_connect_error();
-   exit();
-  }
-*/
 $password = md5($password);
-  $query = 'select * from users '
-           ."where username='$userid' "
+  $query = 'SELECT * FROM Login '
+           ."WHERE username='$userid' "
            ." and password='$password'";
- //echo "<br>" .$query. "<br>";
+ // echo "<br>" .$query. "<br>";
   $result = $dbcnx->query($query);
   if ($result->num_rows >0 )
   {
     // if they are in the database register the user id
     $_SESSION['valid_user'] = $userid;    
   }
-  var_dump ($_SESSION);
+  //var_dump ($_SESSION);
   $dbcnx->close();
 }
 ?>
@@ -54,14 +47,11 @@ $password = md5($password);
 
     // provide form to log in 
     echo '<form method="post" action="authmain.php">';
-    echo '<table>';
-    echo '<tr><td>Userid:</td>';
-    echo '<td><input type="text" name="userid"></td></tr>';
-    echo '<tr><td>Password:</td>';
-    echo '<td><input type="password" name="password"></td></tr>';
-    echo '<tr><td colspan="2" align="center">';
-    echo '<input type="submit" value="Log in"></td></tr>';
-    echo '</table></form>';
+    echo '<input type="text" name="userid" placeholder="username">';
+    echo '<input type="password" name="password" placeholder="password">';
+    echo '<input type="submit" value="Log in">';
+    echo '</form>';
+    echo "<a href='registration.html'>Sign up as a member</a>";
   }
 ?>
 <br />

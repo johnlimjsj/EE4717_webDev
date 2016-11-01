@@ -2,7 +2,7 @@
 class DBController {
 	private $host = "localhost";
 	private $user = "root";
-	private $password = "";
+	private $password = "pepper25";
 	private $database = "phppot_examples";
 	
 	function __construct() {

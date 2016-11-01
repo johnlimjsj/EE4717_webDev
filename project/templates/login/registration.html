@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Base for Dashboard -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Index CSS -->
+    <link href="../../static/css/index/index.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Common CSS -->
+        <!-- Core CSS -->
+        <link href="../../static/css/core/core.css" rel="stylesheet" type="text/css">
+        
+        <!-- Template CSS -->
+        <link href="../../static/css/core/template.css" rel="stylesheet" type="text/css">
+
+        <!-- Custom Fonts -->
+        <link href="../../static/css/core/customfonts.css" rel="stylesheet" type="text/css">
+
+        <!--jQuery libraries-->
+        <script src="../../static/js/core/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+
+<mainContent>
+
+    <h1>Registration Page</h1>
+    <form action="register.php" method=POST>
+    <h2>Personal Particulars</h2>
+    First Name:<br />
+    <input type=text name=firstname><br /><br />
+    Last Name:<br />
+    <input type=text name=lastname><br /><br />
+    Phone:<br />
+    <input type=text name=phone><br /><br />
+    Email:<br />
+    <input type=text name=email><br /><br />
+    Address:<br />
+    <input type=text name=address><br /><br />
+    Payment Info:<br />
+    <input type=text name=paymentinfo><br /><br />
+
+    <h2>Account Details</h2>
+    Username:<br />
+    <input type=text name=username><br /><br />
+    Password:<br />
+    <input type=password name=password><br /><br />
+    Password confirmation:<br /> 
+    <input type=password name=password2><br /><br />
+
+    <input type=submit name=submit value=Submit>
+    <input type=reset name=reset value="Reset">
+    </form>
+
+</mainContent>
+
+</body>
+
+<!-- Image Slider Javascript -->
+    <script src="../../static/js/index/imgSlider.js"></script>
+
+<!--Button toggling Javascript-->
+    <script src="../../static/js/generateContent/commonContent.js"></script>
+    <script src="../../static/js/generateContent/inDivTabs.js"></script>
+    <script src="../../static/js/core/modal.js"></script>
+</html>

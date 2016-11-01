@@ -1,5 +1,5 @@
 
-CREATE DATABASE MisAndMatch;
+CREATE DATABASE MixAndMatch;
 
 create table Customers
 (  
@@ -16,8 +16,8 @@ create table Login
 ( 
 	id int unsigned not null auto_increment primary key,
 	customer_id int unsigned not null,
- 	username char(50) not null,
- 	password char(50) not null,
+ 	username varchar(50) not null,
+ 	password varchar(50) not null,
  	FOREIGN KEY(customer_id) REFERENCES Customers(id)
 );
 
@@ -28,23 +28,17 @@ create table Delivery_Addresses
 	postalcode int unsigned
 );
 
-
-
 create table Orders
 ( 
 	id int unsigned not null auto_increment primary key,
 	customer_id int unsigned not null,
-	thedate date,
+	thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	delivery_add_id int unsigned not null,
 	status ENUM('Processing','Shipped','Arrived'),
 	totalcost float not null,
 	FOREIGN KEY(customer_id) REFERENCES Customers(id),
 	FOREIGN KEY(delivery_add_id) REFERENCES Delivery_Addresses(id)
 );
-
-ALTER TABLE Orders
-MODIFY COLUMN thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
 
 create table Order_items
 ( 
@@ -63,12 +57,6 @@ create table Categories
 	description char(100) not null,
 	image char(50)
 );
-
-ALTER TABLE Categories
-MODIFY COLUMN name ENUM('Jacket','Shirt','Pants','Shoes','Tie') not null;
-
-ALTER TABLE Order_items
-ADD FOREIGN KEY(product_id) REFERENCES Products(id);
 
 create table Products
 ( 
