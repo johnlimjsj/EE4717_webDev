@@ -32,10 +32,10 @@ INSERT INTO Orders(id, customer_id, thedate, delivery_add_id, status, totalcost)
 INSERT INTO Order_items(id, order_id, product_id, quantity) VALUES
   (1, 2, 2, 4),
   (2, 2, 3, 3),
-  (3, 3, 1, 6);
-
-INSERT INTO Order_items(order_id, product_id, quantity) VALUES
-  (4, 2, 1);
+  (3, 3, 1, 6),
+  (12, 4, 1, 5),
+  (18, 5, 1, 2),
+  (19, 5, 4, 2);
 
 
 INSERT INTO Categories VALUES
@@ -64,11 +64,9 @@ INSERT INTO Products VALUES
   (1, 2, 4, 1, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
   (2, 3, 5, 2, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
   (3, 5, 2, 3, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
-  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "tie_sunny", 32.67),
-  (5, 2, 1, 1, "Blue Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
+  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "shirt_blue", 32.67),
+  (5, 2, 1, 1, "Red Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
 
-INSERT INTO Products(cat_id, name, description, image, price) VALUES
-(2, "Red Shirt", "this is basically a red shirt", "shirt_red", 46.00);
 
 
 
