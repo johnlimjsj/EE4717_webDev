@@ -4,22 +4,13 @@ CREATE DATABASE MixAndMatch;
 create table Customers
 (  
 	id int unsigned not null auto_increment primary key,
-	firstname char(50) not null,
-	lastname char(50) not null,
+	firstname varchar(50) not null,
+	lastname varchar(50) not null,
 	phone int,
-	email char(100),
-	address char(100),
-	paymentinfo char(50)
+	email varchar(100),
+	address varchar(100),
+	paymentinfo varchar(50)
 ); 
-
-create table Login
-( 
-	id int unsigned not null auto_increment primary key,
-	customer_id int unsigned not null,
- 	username char(50) not null,
- 	password char(50) not null,
- 	FOREIGN KEY(customer_id) REFERENCES Customers(id)
-);
 
 create table Delivery_Addresses
 (
@@ -27,8 +18,6 @@ create table Delivery_Addresses
 	addr char(100),
 	postalcode int unsigned
 );
-
-
 
 create table Orders
 ( 
@@ -51,11 +40,6 @@ create table Order_items
 	FOREIGN KEY(order_id) REFERENCES Orders(id),
 	FOREIGN KEY(product_id) REFERENCES Products(id)
 );
-ALTER TABLE Order_items
-  DROP FOREIGN KEY order_items_ibfk_1;
-
-ALTER TABLE Order_items
-  ADD FOREIGN KEY (order_id) REFERENCES Orders(id);
 
 create table Categories
 ( 
@@ -93,7 +77,27 @@ create table Products
 
 );
 
+create table Login
+( 
+	id int unsigned not null auto_increment primary key,
+	customer_id int unsigned not null,
+ 	username varchar(50) not null,
+ 	password varchar(50) not null,
+ 	FOREIGN KEY(customer_id) REFERENCES Customers(id)
+);
 
+create table Enquiries
+( 
+	id int unsigned not null auto_increment primary key,
+	customer_id int unsigned,
+ 	firstname varchar(50) not null,
+ 	lastname varchar(50) not null,
+ 	email varchar(50) not null,
+ 	phone varchar(50),
+	type ENUM('general','product','shipping','order', 'website') not null,
+ 	comment varchar(500) not null,
+ 	FOREIGN KEY(customer_id) REFERENCES Customers(id)
+);
 
 
 

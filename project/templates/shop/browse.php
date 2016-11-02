@@ -3,8 +3,10 @@
 
 <head>
 <?php 
+session_start();
 include '../php/connect_DB.php'; 
 include 'functions.php';
+
 function listProductsByQuery($query){
     include '../php/connect_DB.php';
     $result = $db->query($query);
@@ -59,6 +61,16 @@ function listProductsByQuery($query){
 
 <body>
 <mainContent>
+
+<?php
+    if (!empty($_SESSION['valid_userid'])) {
+        echo 
+            "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
+            "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
+            "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button><br>";
+    }
+?>
+
 <div>
 
 <?php
@@ -122,11 +134,11 @@ function listProductsByQuery($query){
 </ul>
 
 <div id="Search" class="tabcontent firsttab">
-<?php listProductsByQuery($select); ?>
+  <?php listProductsByQuery($select); ?>
 </div>
 
 <div id="Jacket" class="tabcontent firsttab">
-<?php listproducts(1); ?>
+  <?php listproducts(1); ?>
 </div>
 
 <div id="Shirt" class="tabcontent">

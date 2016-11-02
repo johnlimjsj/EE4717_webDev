@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+?>
+
+
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -28,26 +32,33 @@
 <body>
 
 <mainContent>
-
+    <?php
+        if (!empty($_SESSION['valid_userid'])) {
+            echo 
+                "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
+                "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
+                "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button><br>";
+        }
+    ?>
     <center>
         <h1>Registration Page</h1>
         <form action="register.php" method=POST>
 
         <h2>Personal Particulars</h2>
-        <input type=text name=firstname placeholder="FIRST NAME" required><br /><br />
-        <input type=text name=lastname placeholder="LAST NAME" required><br /><br />
-        <input type=text name=phone placeholder="PHONE" required><br /><br />
-        <input type=text name=email placeholder="EMAIL" required><br /><br />
-        <input type=text name=address placeholder="ADDRESS" required><br /><br />
-        <input type=text name=paymentinfo placeholder="PAYMENT INFO" required><br /><br />
+        <input type=text name=firstname placeholder="FIRST NAME"><br /><br />
+        <input type=text name=lastname placeholder="LAST NAME"><br /><br />
+        <input type=text name=phone placeholder="PHONE"><br /><br />
+        <input type=text name=email placeholder="EMAIL"><br /><br />
+        <input type=text name=address placeholder="ADDRESS"><br /><br />
+        <input type=text name=paymentinfo placeholder="PAYMENT INFO"><br /><br />
 
         <h2>Account Details</h2>
-        <input type=text name=username placeholder="USERNAME" required><br /><br />
-        <input type=password name=password placeholder="PASSWORD" required><br /><br />
-        <input type=password name=password2 placeholder="CONFIRM PASSWORD" required><br /><br />
+        <input type=text name=username placeholder="USERNAME"><br /><br />
+        <input type=password name=password placeholder="PASSWORD"><br /><br />
+        <input type=password name=password2 placeholder="CONFIRM PASSWORD"><br /><br />
 
-        <button class="button buttonBlack" type="submit">SUBMIT</button>
-        <button class="button buttonBlack" type="reset">RESET</button>
+        <button class="buttonBlackInverse" type="submit" name="submit">SUBMIT</button>
+        <button class="buttonBlackInverse" type="reset" name="reset">RESET</button>
         </form>
     </center>
 

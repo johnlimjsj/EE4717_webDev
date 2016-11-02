@@ -31,19 +31,19 @@
         var img = $('<img />', { 
               id: 'Myid',
               src: '../../static/img/common/logo.png',
-              href: '#index.html',
+              href: '../../templates/index/index.php',
               alt: 'Logo'
             });
 
-        let homelink = $('<a>Home</a>').attr('href','../../templates/index/index.html');
+        let homelink = $('<a>Home</a>').attr('href','../../templates/index/index.php');
         let aboutlink = $('<a>About</a>').attr('href','../../templates/about/about.html');
         let shoplink = $('<a>Shop</a>').attr('href','../../templates/shop/browse.php');
 
 
-        let gallerylink = $('<a>Gallery</a>').attr('href','#gallery.html');
-        let contactlink = $('<a>Contact</a>').attr('href','../../templates/contact/contact.html');
+        let registerlink = $('<a>Sign Up</a>').attr('href','../../templates/register/registration.php');
+        let contactlink = $('<a>Contact</a>').attr('href','../../templates/contact/contact.php');
 
-        return nav.append(homelink).append(aboutlink).append(shoplink).append(img).append(gallerylink).append(contactlink);
+        return nav.append(homelink).append(aboutlink).append(shoplink).append(img).append(registerlink).append(contactlink);
         
     }
 
