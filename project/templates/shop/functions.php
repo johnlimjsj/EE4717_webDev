@@ -81,16 +81,21 @@ function getParamFromTableWithKeyValuePair($param, $table, $key, $value){
     $result = $db->query($select);
     // put query here to check if result is a null set or not
     if($result){
+      $i = 0;
       while($row = $result->fetch_assoc()){
         $param_out = $row[$param];
         $id = $row['id'];
         $search[$param_out] = $_POST[$param_out];
         if(isset($search[$param_out])){
           // then the category has been selected.
-          if($GLOBALS['flag'] == 0){ $string .= ' AND ' . $key . " = " . $id; }
+          if($GLOBALS['flag'] == 0){ 
+            if($i = 0){ $string .= ' AND ' . $key . " = " . $id; }
+            else{ $string .= ' OR ' . $key . " = " . $id; }
+          }      
           else { 
             $string .= " WHERE " . $key . " = " . $id; 
             $GLOBALS['flag'] = 0;
+            $i = 1;
           }
         }
       }
@@ -100,6 +105,14 @@ function getParamFromTableWithKeyValuePair($param, $table, $key, $value){
 
   function isWildCardSet($inputname){
 
+  }
+
+  function getRecentIDEntryFromTable($table){
+    include '../php/connect_DB.php';
+    $select = "SELECT MAX(id) from " . $table;
+    $result = $db->query($select);
+    $row = $result->fetch_assoc();
+    return $row['MAX(id)'];
   }
 
 

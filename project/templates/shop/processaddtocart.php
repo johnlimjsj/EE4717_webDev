@@ -12,41 +12,39 @@ When the client clicks "buy", then the "status" changes from "pending" to "Proce
 
 When he adds more stuff to cart, then the cycle begins all over again. 
 */
+	
+	include '../php/connect_DB.php';	
+	include 'functions.php';
+	
 	// Grab results from the POST
 	$product_id = $_POST['hidden-id'];
 	$product_price = $_POST['hidden-price'];
-	include '../php/connect_DB.php';	
-// =========== OLD ================
+	
+	if($_SESSION['valid_id'] == NULL){
+		echo 'null lar';
+		$insert = "INSERT INTO Customers () VALUES ()";
+		$db->query($insert);
 
-	$select = "SELECT MAX(id) from Orders";
-	$result = $db->query($select);
-	$row = $result->fetch_assoc();
-	$order_id =  $row['MAX(id)'] + 1;
+		$_SESSION['valid_id'] =  getRecentIDEntryFromTable('Customers');
+	}
+	$customer_id = $_SESSION['valid_id'];
 
-//======= END OF OLD ===============
-
-include 'functions.php';
-	// select data for the Orders table
-
-	$customer_id = 1;
-	$delivery_add_id = 1;
-
-	$select = getOrderIDSelectStringFromCustID($customer_id);
-	echo $select;
-	echo 'lalala';
+	echo $customer_id;
+	
+	$select = "SELECT * FROM Orders WHERE Status='Pending' AND customer_id = " . $customer_id . ";";
 
 	// if cannot find pending order, then create a new order
 	if(isQueryNull($select)){
-		$insert = "INSERT INTO Orders(customer_id, delivery_add_id, status, totalcost) VALUES (". 
+		$insert = "INSERT INTO Orders(customer_id, status, totalcost) VALUES (". 
 			  $customer_id . ", " .
-			  $delivery_add_id . ", " .
 			  " 'Pending' " . ", " .
 			  "0 )";
 		echo $insert;
 		$result = $db->query($insert);
 	}
-	
+	echo 'cus id - ' . $customer_id . 'end';
 	$order_id = getOrderIDFromCustID($customer_id);
+	echo 'orderid - ' . $order_id . 'end';
 
 // check if entry exists in the Order_items table:
 	$row_location = "order_id=" . $order_id . " AND product_id =". $product_id;

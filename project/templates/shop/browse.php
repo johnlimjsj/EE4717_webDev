@@ -16,22 +16,24 @@ function listProductsByQuery($query){
         $product_price = $row[price];
         $product_id = $row[id];
         echo 
-          '<div class="item">' . 
+          '<div class="item center-div">' . 
             '<img src="../../static/img/shop/shop_' . $row[image] . '.png">' . 
             '<div class="item-title">' . $row[name] . '</div>' . 
             '<p> Description: ' . $row[description] . '</p>' . 
             '<div class="item-price">$' . $product_price . '</div>' . 
-            '<button class="addtocart buttonBlack">Add to Cart</button>' . 
-            '<form class="addtomycart" method="post" action="processaddtocart.php">
+            '<form id="addtomycart" method="post" action="processaddtocart.php">
+
               <input type="hidden" name="hidden-price" value="' . $product_price . '" />
               <input type="hidden" name="hidden-id" value="' . $product_id . '" />
-              <input class="addtocart buttonBlack" type="submit" value="True Add To Cart" />
+              <input class="addtocart buttonBlack" type="submit" value="Add To Cart" />
             </form>  
           </div>';
       $i++;
       }  
     }
   }
+
+  
 
   function listproducts($catid){
     include '../php/connect_DB.php';
@@ -79,6 +81,30 @@ function listProductsByQuery($query){
   $select = generateSearchStringFromParamTableKeyArray($select, 'cat_id', 'name', 'Categories');
   $select = generateSearchStringFromParamTableKeyArray($select, 'colour_id', 'name', 'Colours');
   $select = generateSearchStringFromParamTableKeyArray($select, 'style_id', 'name', 'Style');
+  
+  function generateMinMax($string, $minormax){
+    $param = $_POST[$minormax];
+    if(isset($param)){
+
+      $string .= "AND price < " . $param;
+    }
+  }
+  $min = $_POST['min'];
+
+  if(isset($min)){ 
+    if($flag==0){$select .= " AND ";}
+    else{$select.= " WHERE "; $flag=0;}
+    $select .= " price > " . $min; 
+  }
+
+  $max = $_POST['max'];
+  
+  if(isset($max)){ 
+    if($flag==0){$select .= " AND ";}
+    else{$select.= " WHERE "; $flag=0;}
+    $select .= " price < " . $max; 
+  }
+
   // echo $select;
 
   if(isset($_POST['wildcard'])){
@@ -107,8 +133,8 @@ function listProductsByQuery($query){
       <td>Filter by Price</td>
     </tr>
     <tr>
-      <td> <input type="number" placeholder="Min Price" size="4"/> </td>
-      <td> <input type="number" placeholder="Max Price" size="4"/></td>
+      <td> <input type="number" name="min" placeholder="Min Price" size="4"/> </td>
+      <td> <input type="number" name="max" placeholder="Max Price" size="4"/></td>
     </tr>
 
     <tr> 
@@ -178,6 +204,23 @@ Total Price: $<span id='totalprice'> 0</span>
 
 </mainContent>
 
+<script>
+  
+    // $('form#addtomycart').submit(function(e){
+    //   e.preventDefault();
+    //   $.ajax({
+    //     url: "processaddtocart.php",
+    //     type: "POST",
+    //     data: $('form#addtomycart').serialize(),
+    //     success: function(data){
+    //       // $('div#ordercomplete').show();
+          
+    //     },
+    //     error: function  (jXHR, textStatus, errorThrown){},
+    //   });
+    // });
+
+</script>
 
 
 </body>

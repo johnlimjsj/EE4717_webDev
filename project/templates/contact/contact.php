@@ -50,7 +50,7 @@
                     <br>
 
                     <label for="myfirstname"> First Name<sup>*</sup> </label>
-                    <input type="mytext" name="myfirstname" required>
+                    <input type="mytext" name="myfirstname" value="dfgh" required>
 
                     <label for="mylastname"> Last Name<sup>*</sup> </label>
                     <input type="text" name="mylastname" required>

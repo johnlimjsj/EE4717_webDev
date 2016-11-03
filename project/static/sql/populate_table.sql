@@ -8,10 +8,10 @@ Whenever customer adds something to cart, for now, 'order_id' in 'Order_items' s
 Once he is ready to buy, he clicks "buy", then it registers as an order, and is given a date time stamp. 
 */
 
-INSERT INTO Customers VALUES
-  (1, "Casey", "Duckering", 91234567, "cduck@gmail.com", "Piedmont Avenue 5", "123456789"),
-  (2, "Tobin", "Holcomb", 98765432, "tobin@gmail.com", "Foothill Block 49", "123456789"),
-  (3, "Johan", "Kok", 99119911, "jkok005@gmail.com", "Tampines Avenue 6", "155263553");
+INSERT INTO Customers(firstname, lastname, phone, email, address, paymentinfo) VALUES
+  ("Casey", "Duckering", 91234567, "cduck@gmail.com", "Piedmont Avenue 5", "123456789"),
+  ("Tobin", "Holcomb", 98765432, "tobin@gmail.com", "Foothill Block 49", "123456789"),
+  ("Johan", "Kok", 99119911, "jkok005@gmail.com", "Tampines Avenue 6", "155263553");
 
 INSERT INTO Delivery_Addresses VALUES
   (1, "NTU Hall 11", "098789"),
@@ -19,23 +19,23 @@ INSERT INTO Delivery_Addresses VALUES
   (3, "Pioneer and crescent", "878987");
 
 
-INSERT INTO Orders(id, customer_id, thedate, delivery_add_id, status, totalcost) VALUES
-  (1, 1, '2014-11-22', 1, 'Processing', 213.5),
-  (2, 2, '2014-12-08', 2, 'Processing', 333.15),
-  (3, 3, '2013-07-18', 3, 'Shipped', 245.78),
-  (4, 1, '2016-10-27', 1, 'Processing', 65.5),
-  (5, 1, '2016-10-28', 1, 'Pending', 0),
-  (6, 2, '2016-10-28', 1, 'Pending', 0);
+INSERT INTO Orders(customer_id, thedate, delivery_add_id, status, totalcost) VALUES
+  (1, '2014-11-22', 1, 'Processing', 213.5),
+  (2, '2014-12-08', 2, 'Processing', 333.15),
+  (3, '2013-07-18', 3, 'Shipped', 245.78),
+  (1, '2016-10-27', 1, 'Processing', 65.5),
+  (1, '2016-10-28', 1, 'Pending', 0),
+  (2, '2016-10-28', 1, 'Pending', 0);
 
 
 
-INSERT INTO Order_items(id, order_id, product_id, quantity) VALUES
-  (1, 2, 2, 4),
-  (2, 2, 3, 3),
-  (3, 3, 1, 6),
-  (12, 4, 1, 5),
-  (18, 5, 1, 2),
-  (19, 5, 4, 2);
+INSERT INTO Order_items(order_id, product_id, quantity) VALUES
+  (2, 2, 4),
+  (2, 3, 3),
+  (3, 1, 6),
+  (4, 1, 5),
+  (5, 1, 2),
+  (5, 4, 2);
 
 
 INSERT INTO Categories VALUES
@@ -60,12 +60,12 @@ INSERT INTO Colours VALUES
   (7, "Black"),
   (8, "White");
 
-INSERT INTO Products VALUES
-  (1, 2, 4, 1, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
-  (2, 3, 5, 2, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
-  (3, 5, 2, 3, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
-  (4, 2, 5, 3, "Blue Shirt", "Basically a blue shirt", "shirt_blue", 32.67),
-  (5, 2, 1, 1, "Red Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
+INSERT INTO Products(cat_id, colour_id, style_id, name, description, image, price) VALUES
+  (2, 4, 1, "Green Shirt", "this is basically a green shirt", "shirt_green", 54.67),
+  (3, 5, 2, "Blue Checkered Pants", "A nice checkered blue shirt that looks good", "pants_blue", 35.50),
+  (5, 2, 3, "Sunny Tie", "A bright colored tie that brightens everyone's day", "tie_sunny", 16.50);
+  (2, 5, 3, "Blue Shirt", "Basically a blue shirt", "shirt_blue", 32.67),
+  (2, 1, 1, "Red Shirt", "Basically a Red shirt thats modern", "shirt_red", 46.00);
 
 
 

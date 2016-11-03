@@ -1,39 +1,7 @@
+
 <?php 
-    include "../php/connect_DB.php";
-
-    if (isset($_POST['userid']) && isset($_POST['password'])) {
-      // if the user has just tried to log in
-      $userid = $_POST['userid'];
-      $password = $_POST['password'];
-
-      $password = md5($password);
-      $login = "SELECT * FROM Login 
-                WHERE username = '$userid' and password = '$password'";
-      $resultLogin = $db->query($login);
-
-      if ($resultLogin->num_rows >0 ) {
-        // if user is registered in database
-        $rowLogin = $resultLogin->fetch_assoc();
-        $customerid = $rowLogin['customer_id'];
-
-        $cust = "SELECT * FROM Customers WHERE id = " . $customerid . ";";
-        $resultCust = $db->query($cust);
-        $rowCust = $resultCust->fetch_assoc();
-        $firstname = $rowCust['firstname'];
-        $lastname = $rowCust['lastname'];
-        $email = $rowCust['email'];
-
-        $_SESSION['valid_userid'] = $userid;
-        $_SESSION['valid_firstname'] = $firstname;
-        $_SESSION['valid_lastname'] = $lastname;
-        $_SESSION['valid_email'] = $email;
-      }
-
-      //var_dump ($_SESSION);
-      $db->close();
-    }
-?>
-
+include "../php/connect_DB.php";
+ ?>
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -63,9 +31,47 @@
 <body>
 
 <mainContent>
+    <?php 
+    include "../php/connect_DB.php";
 
+    if (isset($_POST['userid']) && isset($_POST['password'])) {
+      // if the user has just tried to log in
+      $userid = $_POST['userid'];
+      $password = $_POST['password'];
+
+      $password = md5($password);
+      $login = "SELECT * FROM Login 
+                WHERE username = '$userid' and password = '$password'";
+      $resultLogin = $db->query($login);
+
+      if ($resultLogin->num_rows >0 ) {
+        // if user is registered in database
+        $rowLogin = $resultLogin->fetch_assoc();
+        $customerid = $rowLogin['customer_id'];
+
+        $cust = "SELECT * FROM Customers WHERE id = " . $customerid . ";";
+        $resultCust = $db->query($cust);
+        $rowCust = $resultCust->fetch_assoc();
+        $firstname = $rowCust['firstname'];
+        $lastname = $rowCust['lastname'];
+        $email = $rowCust['email'];
+        // $customer_id = $rowCust['id'];
+
+        $_SESSION['valid_userid'] = $userid;
+        $_SESSION['valid_firstname'] = $firstname;
+        $_SESSION['valid_lastname'] = $lastname;
+        $_SESSION['valid_email'] = $email;
+        $_SESSION['valid_id'] = $customerid;
+        echo '<h1>sdfghj' . $_SESSION['valid_id'];
+      }
+
+      //var_dump ($_SESSION);
+      $db->close();
+    }
+?>
     <!-- Login Form -->
     <?php
+    echo '<h1>' . $_SESSION['valid_id'] . '</h1>';
       if (isset($_SESSION['valid_userid']))
       {
         echo 

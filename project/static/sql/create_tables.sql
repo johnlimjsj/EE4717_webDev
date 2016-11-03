@@ -4,8 +4,8 @@ CREATE DATABASE MixAndMatch;
 create table Customers
 (  
 	id int unsigned not null auto_increment primary key,
-	firstname varchar(50) not null,
-	lastname varchar(50) not null,
+	firstname varchar(50),
+	lastname varchar(50),
 	phone int,
 	email varchar(100),
 	address varchar(100),
@@ -24,7 +24,7 @@ create table Orders
 	id int unsigned not null auto_increment primary key,
 	customer_id int unsigned not null,
 	thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	delivery_add_id int unsigned not null,
+	delivery_add_id int unsigned,
 	status ENUM('Pending','Processing','Shipped','Arrived'),
 	totalcost float not null,
 	FOREIGN KEY(customer_id) REFERENCES Customers(id),

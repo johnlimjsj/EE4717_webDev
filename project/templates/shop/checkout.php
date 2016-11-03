@@ -29,24 +29,53 @@ include 'functions.php';
 
 <body>
 <mainContent>
-<h2>Please confirm your order</h2>
+<ul class="tab">
+    <li tab="Measurements">Measurements</li>
+    <li> > </li>
+    <li tab="Checkout">Jacket</li>
 
+</ul>
+
+<div id="Measurements" class="tabcontent firsttab">
+  <h2> Your Profile </h2>
+<?php
+  $Profile['Torso Length'] = 5;
+  $Profile['Shoulder Width'] = 9;
+  foreach($Profile as $key => $value){
+    echo $key . " is " . $value;
+  }
+?>
+
+</div>
+<div id="Checkout" class="tabcontent">
 <?php 
 
 
 
 // get customer info
-  $customer_id = 1;
+  if($_SESSION['valid_id'] == NULL){
+    echo 'your cart is empty';
+    
+  }
+  else{
+    $customer_id = $_SESSION['valid_id'];
+
   $address = getParamFromTableWithKeyValuePair('address', 'Customers', 'id', $customer_id);
   $paymentinfo = getParamFromTableWithKeyValuePair('paymentinfo', 'Customers', 'id', $customer_id);
+  $firstname = getParamFromTableWithKeyValuePair('firstname', 'Customers', 'id', $customer_id);
+  $lastname = getParamFromTableWithKeyValuePair('lastname', 'Customers', 'id', $customer_id);
 
 $order_id = getOrderIDFromCustID($customer_id);
+
+echo 'cust id: ' . $customer_id . '<br>';
+
+echo 'orderid: ' . $order_id . '<br>';
 
 $select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
 
 $totalcost = getResultFromQuery($select, 'totalcost');
 
-// $select = "SELECT MAX(id) from Order_items";
+
 $select = "SELECT * from Order_items WHERE order_id=" . $order_id;
 
 $result = $db->query($select);
@@ -67,7 +96,7 @@ echo
     while($row = $result->fetch_assoc()){
       $product_id = $row[product_id];
       $product_quantity = $row[quantity];
-      // $product_name = getProductNameFromID($product_id);
+
       $product_name = getParamFromTableWithKeyValuePair('name', 'Products', 'id', $product_id);
       $product_price = getParamFromTableWithKeyValuePair('price', 'Products', 'id', $product_id);
 
@@ -87,15 +116,16 @@ echo
   $totalcost . 
   '<br>
   <table>
+    
     <tr>
       <td> Delivery Address: </td>
-      <td> <input type="text" name="address" value="' . $address . '"/>
+      <td> <input type="text" name="address" value="' . $address . '" required/>
       </td>
     </tr>
     <tr>
       <td> Payment info: </td>
       <td>
-        <input type="text" name="paymentinfo" value="' . $paymentinfo .'"/>
+        <input type="text" name="paymentinfo" value="' . $paymentinfo .'" required/>
       </td>
       
     </tr>
@@ -103,12 +133,14 @@ echo
   
  
   <input type="hidden" name="hidden-order_id" value="' . $order_id . '" />
-  <input type="hidden" name="hidden-totalcost" value="' . $totalcost . '" />
+  <input type="hidden" name="hidden-totalcost" value="' . $totalcost . '"/>
   <input class="buttonBlack" type="submit" value="Buy" />
   </form>';
 
+  }
+  
 ?>
-
+</div>
 <div id="ordercomplete" style="display:none; ">
 <p>Thanks for shopping with us. Your order has been processed and is being shipped. </p>
 </div>
@@ -119,19 +151,19 @@ echo
  
 <script>
   
-    $('form#checkout').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url: "processcheckout.php",
-        type: "POST",
-        data: $('form#checkout').serialize(),
-        success: function(data){
-          $('div#ordercomplete').show();
-          alert('ordered');
-        },
-        error: function  (jXHR, textStatus, errorThrown){},
-      });
-    });
+    // $('form#checkout').submit(function(e){
+    //   e.preventDefault();
+    //   $.ajax({
+    //     url: "processcheckout.php",
+    //     type: "POST",
+    //     data: $('form#checkout').serialize(),
+    //     success: function(data){
+    //       $('div#ordercomplete').show();
+    //       alert('ordered');
+    //     },
+    //     error: function  (jXHR, textStatus, errorThrown){},
+    //   });
+    // });
 
 </script>
 
@@ -139,6 +171,7 @@ echo
 </body>
     <!--Button toggling Javascript-->
     <script src="../../static/js/generateContent/baseContent.js"></script>
+    <script src="../../static/js/generateContent/itemCategories.js"></script>
     <!-- <script src="{%  static 'js/button_toggle.js'%}"></script> -->
     <!-- <script src="{%  static 'js/plugins/morris/raphael.min.js'%}"></script> -->
 </html>

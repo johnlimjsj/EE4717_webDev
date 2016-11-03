@@ -49,6 +49,7 @@
 			else {
 				//register user to Customers database
 				$password = md5($password);
+				$insert = "INSERT INTO Delivery_addresses (addr) VALUES (". $address . ")";
 
 				$cust = "INSERT INTO Customers (firstname, lastname, phone, 
 						email, address, paymentinfo) 

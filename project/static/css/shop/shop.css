@@ -26,6 +26,7 @@ div.item{
 	display:inline-block;
 	padding:2%;
 	min-width:100px;
+
 }
 
 div.item img{
@@ -44,6 +45,11 @@ div.item .item-price{
 
 div.item p{
 	text-align: center;
+}
+
+#addtomycart *{
+	margin:auto;
+	display: block;
 }
 
 /*For the browse.php page*/
