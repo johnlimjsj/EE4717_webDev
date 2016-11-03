@@ -8,10 +8,16 @@ Whenever customer adds something to cart, for now, 'order_id' in 'Order_items' s
 Once he is ready to buy, he clicks "buy", then it registers as an order, and is given a date time stamp. 
 */
 
-INSERT INTO Customers(firstname, lastname, phone, email, address, paymentinfo) VALUES
-  ("Casey", "Duckering", 91234567, "cduck@gmail.com", "Piedmont Avenue 5", "123456789"),
-  ("Tobin", "Holcomb", 98765432, "tobin@gmail.com", "Foothill Block 49", "123456789"),
-  ("Johan", "Kok", 99119911, "jkok005@gmail.com", "Tampines Avenue 6", "155263553");
+INSERT INTO Measurements(torso_length, arm_length, shoulder_width, chest, waist, hips, bicep, pants_length, thigh, neck) VALUES 
+  (88, 58, 50, 45, 32, 40, 13, 70, 22, 17),
+  (87, 59, 57, 44, 33, 41, 14, 71, 21, 18),
+  (86, 57, 55, 46, 33, 47, 18, 72, 24, 19);
+
+
+INSERT INTO Customers(measure_id, firstname, lastname, phone, email, address, paymentinfo) VALUES
+  (1, "Casey", "Duckering", 91234567, "cduck@gmail.com", "Piedmont Avenue 5", "123456789"),
+  (2, "Tobin", "Holcomb", 98765432, "tobin@gmail.com", "Foothill Block 49", "123456789"),
+  (3, "Johan", "Kok", 99119911, "jkok005@gmail.com", "Tampines Avenue 6", "155263553");
 
 INSERT INTO Delivery_Addresses VALUES
   (1, "NTU Hall 11", "098789"),

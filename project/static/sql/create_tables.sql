@@ -4,12 +4,14 @@ CREATE DATABASE MixAndMatch;
 create table Customers
 (  
 	id int unsigned not null auto_increment primary key,
+	measure_id int unsigned,
 	firstname varchar(50),
 	lastname varchar(50),
 	phone int,
 	email varchar(100),
 	address varchar(100),
-	paymentinfo varchar(50)
+	paymentinfo varchar(50),
+	FOREIGN KEY(measure_id) REFERENCES Measurements(id)
 ); 
 
 create table Delivery_Addresses
@@ -97,6 +99,21 @@ create table Enquiries
 	type ENUM('general','product','shipping','order', 'website') not null,
  	comment varchar(500) not null,
  	FOREIGN KEY(customer_id) REFERENCES Customers(id)
+);
+
+create table Measurements
+( 
+	id int unsigned not null auto_increment primary key,
+	torsolength float,
+	armlength float,
+	shoulderwidth float,
+	chest float,
+	waist float,
+	hips float,
+	bicep float,
+	pantslength float,
+	thigh float,
+	neck float
 );
 
 

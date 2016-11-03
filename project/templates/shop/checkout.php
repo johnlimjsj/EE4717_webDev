@@ -32,20 +32,32 @@ include 'functions.php';
 <ul class="tab">
     <li tab="Measurements">Measurements</li>
     <li> > </li>
-    <li tab="Checkout">Jacket</li>
+    <li tab="Checkout">Checkout</li>
 
 </ul>
 
 <div id="Measurements" class="tabcontent firsttab">
   <h2> Your Profile </h2>
 <?php
-  $Profile['Torso Length'] = 5;
-  $Profile['Shoulder Width'] = 9;
-  foreach($Profile as $key => $value){
-    echo $key . " is " . $value;
-  }
-?>
+  $measure_id=1;
+  $select = "SELECT * from Measurements WHERE id=$measure_id";
+  $result = $db->query($select);
+  if($result){
+    echo '<form id=measurements method="post" action="processmeasurements.php">' ;
+    $i=0;
+    while($row = $result->fetch_assoc()){
 
+      foreach($row as $key => $value){
+        print "<div> $key <input type='text' name=$key value=$value />  </div>";
+      }
+    }
+    echo '<input type="submit" value="Update or submit">';
+    echo '</form>';
+  }
+
+
+?>
+<br><br><br><br><br>
 </div>
 <div id="Checkout" class="tabcontent">
 <?php 
