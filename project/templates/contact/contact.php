@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+?>
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -28,29 +30,39 @@
 
 <body>
 <mainContent>
+
+<?php
+    if (!empty($_SESSION['valid_userid'])) {
+        echo 
+            "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
+            "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
+            "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button><br>";
+    }
+?>
+
 <img src="../../static/img/contact/contactUs.png" id="contactUs">
 
-            <form name="contact" method="post" action="show_post.php">
+            <form name="contact" method="GET" action="contact.inc.php">
 
                 <fieldset id="contact">
 
                     <legend><h1>Contact Us</h2></legend>
                     <br>
 
-                    <label for="myFirstName"> First Name<sup>*</sup> </label>
-                    <input type="text" name="myFirstName" id="myFirstName" required>
+                    <label for="myfirstname"> First Name<sup>*</sup> </label>
+                    <input type="mytext" name="myfirstname" required>
 
-                    <label for="myLastName"> Last Name<sup>*</sup> </label>
-                    <input type="text" name="myLastName" id="myLastName" required>
+                    <label for="mylastname"> Last Name<sup>*</sup> </label>
+                    <input type="text" name="mylastname" required>
 
-                    <label for="myEmail"> Email<sup>*</sup> </label>
-                    <input type="text" name="myName" id="myEmail" required>
+                    <label for="myemail"> Email<sup>*</sup> </label>
+                    <input type="text" name="myemail" required>
 
-                    <label for="myMobile"> Mobile </label>
-                    <input type="tel" name="myMobile" id="myMobile">
+                    <label for="myphone"> Mobile </label>
+                    <input type="text" name="myphone">
 
-                    <label for="myEnquiry"> Type of Enquiry </label>
-                    <select name="myEnquiry" id="myEnquiry">
+                    <label for="myenquiry"> Type of Enquiry </label>
+                    <select name="myenquiry">
                         <option value="general">General Enquiry</option>
                         <option value="product">Products/Services</option>
                         <option value="shipping">Shipping</option>
@@ -58,14 +70,13 @@
                         <option value="website">Website</option>
                     </select><br>
 
-                    <label for="myComment"> Comments<sup>*</sup> </label>
-                    <textarea name="myComment" id="myComment" cols="20" rows="6" required></textarea>
+                    <label for="mycomment"> Comments<sup>*</sup> </label>
+                    <textarea name="mycomment" cols="20" rows="6" required></textarea>
 
                 </fieldset>
                 
                 <button class="button buttonBlack inlineBlock" type="submit">SUBMIT</button>
                 <button class="button buttonBlack inlineBlock" type="reset">RESET</button>
-
             </form>
 
             <h1>Locate Us</h1>

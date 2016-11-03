@@ -1,4 +1,39 @@
-<!DOCTYPE html>
+<?php 
+    include "../php/connect_DB.php";
+
+    if (isset($_POST['userid']) && isset($_POST['password'])) {
+      // if the user has just tried to log in
+      $userid = $_POST['userid'];
+      $password = $_POST['password'];
+
+      $password = md5($password);
+      $login = "SELECT * FROM Login 
+                WHERE username = '$userid' and password = '$password'";
+      $resultLogin = $db->query($login);
+
+      if ($resultLogin->num_rows >0 ) {
+        // if user is registered in database
+        $rowLogin = $resultLogin->fetch_assoc();
+        $customerid = $rowLogin['customer_id'];
+
+        $cust = "SELECT * FROM Customers WHERE id = " . $customerid . ";";
+        $resultCust = $db->query($cust);
+        $rowCust = $resultCust->fetch_assoc();
+        $firstname = $rowCust['firstname'];
+        $lastname = $rowCust['lastname'];
+        $email = $rowCust['email'];
+
+        $_SESSION['valid_userid'] = $userid;
+        $_SESSION['valid_firstname'] = $firstname;
+        $_SESSION['valid_lastname'] = $lastname;
+        $_SESSION['valid_email'] = $email;
+      }
+
+      //var_dump ($_SESSION);
+      $db->close();
+    }
+?>
+
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -10,7 +45,6 @@
 
     <!-- Index CSS -->
     <link href="../../static/css/index/index.css" rel="stylesheet" type="text/css">
-
 
     <!-- Common CSS -->
         <!-- Core CSS -->
@@ -30,10 +64,45 @@
 
 <mainContent>
 
+    <!-- Login Form -->
+    <?php
+      if (isset($_SESSION['valid_userid']))
+      {
+        echo 
+            "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
+            "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
+            "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button>";
+      }
+      else
+      {
+        if (isset($userid))
+        {
+          // if they've tried and failed to log in
+          echo 'Could not log you in.<br />';
+        }
+        else 
+        {
+          // they have not tried to log in yet or have logged out
+          echo 'You are not logged in.<br />';
+        }
+
+        // provide form to log in 
+        // echo '<div id="login" class="w3-content">';
+        echo 
+            '<form method="post" action="index.php">' . 
+            '<input type="text" name="userid" placeholder="username" style="margin-right: 5px;">' . 
+            '<input type="password" name="password" placeholder="password" style="margin-right: 5px;"">' . 
+            '<button class="button buttonBlack" type="submit">LOGIN</button>' . 
+            '</form>';
+            '<a href="../register/registration.html">Sign up as a member</a>';
+        // echo '</div>';
+      }
+    ?>
+
     <div id="imgSlider" class="w3-content w3-display-container shadow" style="max-width:800px">
         <!-- Image Slider -->
-        <a href="../#about.html"><img class="mySlides" src="../../static/img/index/main_slider1.png" style="width:100%"></a>
-        <a href="../shop/browse.html"><img class="mySlides" src="../../static/img/index/main_slider2.png" style="width:100%"></a>
+        <a href="../about/about.html"><img class="mySlides" src="../../static/img/index/main_slider1.png" style="width:100%"></a>
+        <a href="../shop/browse.php"><img class="mySlides" src="../../static/img/index/main_slider2.png" style="width:100%"></a>
         <a href="../contact/contact.html"><img class="mySlides" src="../../static/img/index/main_slider3.png" style="width:100%"></a>
         <div class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft" style="width:100%">
             <div class="w3-left w3-padding-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
@@ -73,7 +142,7 @@
             <b>SIZE</b>
         </div>
         
-        <button type="button" class="buttonBlackInverse" onclick="location.href='../shop/browse.html';">SHOP NOW</button>
+        <button type="button" class="buttonBlackInverse" onclick="location.href='../shop/browse.php';">SHOP NOW</button>
     </div>
 
     <div id="greyBanner">
@@ -84,9 +153,9 @@
 
         <!-- YouTube media player -->
         <iframe width="400" height="225" src="https://www.youtube.com/embed/nwBniB9amJY" frameborder="0"></iframe>
+
+        <br><br><br>
     </div>
-
-
 
 </mainContent>
 
@@ -97,6 +166,7 @@
 
 <!--Button toggling Javascript-->
     <script src="../../static/js/generateContent/baseContent.js"></script>
-    <script src="../../static/js/generateContent/inDivTabs.js"></script>
+    <script src="../../static/js/generateContent/itemCategories.js"></script>
     <script src="../../static/js/core/modal.js"></script>
+
 </html>
