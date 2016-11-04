@@ -82,16 +82,10 @@ function listProductsByQuery($query){
   $select = generateSearchStringFromParamTableKeyArray($select, 'colour_id', 'name', 'Colours');
   $select = generateSearchStringFromParamTableKeyArray($select, 'style_id', 'name', 'Style');
   
-  function generateMinMax($string, $minormax){
-    $param = $_POST[$minormax];
-    if(isset($param)){
 
-      $string .= "AND price < " . $param;
-    }
-  }
   $min = $_POST['min'];
 
-  if(isset($min)){ 
+  if($min!=NULL){ 
     if($flag==0){$select .= " AND ";}
     else{$select.= " WHERE "; $flag=0;}
     $select .= " price > " . $min; 
@@ -99,7 +93,7 @@ function listProductsByQuery($query){
 
   $max = $_POST['max'];
   
-  if(isset($max)){ 
+  if($max!=NULL){ 
     if($flag==0){$select .= " AND ";}
     else{$select.= " WHERE "; $flag=0;}
     $select .= " price < " . $max; 
@@ -178,7 +172,8 @@ function listProductsByQuery($query){
 </ul>
 
 <div id="Search" class="tabcontent firsttab">
-  <?php listProductsByQuery($select); ?>
+
+  <?php echo $select; listProductsByQuery($select); ?>
 </div>
 
 <div id="Jacket" class="tabcontent firsttab">
