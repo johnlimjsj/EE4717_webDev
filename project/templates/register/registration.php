@@ -2,7 +2,6 @@
     session_start();
 ?>
 
-
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -35,10 +34,12 @@
     <?php
         if (!empty($_SESSION['valid_userid'])) {
             echo 
-                "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
-                "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
-                "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button><br>";
-        }
+                "<script>" . 
+                "alert('You are already registered!');" . 
+                "window.location.href='javascript:history.back(1);';" . 
+                "</script>";
+            exit;
+       }
     ?>
     <center>
         <h1>Registration Page</h1>

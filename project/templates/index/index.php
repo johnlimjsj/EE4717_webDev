@@ -55,14 +55,14 @@ include "../php/connect_DB.php";
         $firstname = $rowCust['firstname'];
         $lastname = $rowCust['lastname'];
         $email = $rowCust['email'];
-        // $customer_id = $rowCust['id'];
+        $phone = $rowCust['phone'];
 
         $_SESSION['valid_userid'] = $userid;
         $_SESSION['valid_firstname'] = $firstname;
         $_SESSION['valid_lastname'] = $lastname;
         $_SESSION['valid_email'] = $email;
+        $_SESSION['valid_phone'] = $phone;
         $_SESSION['valid_id'] = $customerid;
-        echo '<h1>sdfghj' . $_SESSION['valid_id'];
       }
 
       //var_dump ($_SESSION);
@@ -71,7 +71,6 @@ include "../php/connect_DB.php";
 ?>
     <!-- Login Form -->
     <?php
-    echo '<h1>' . $_SESSION['valid_id'] . '</h1>';
       if (isset($_SESSION['valid_userid']))
       {
         echo 
