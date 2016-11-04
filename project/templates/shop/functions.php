@@ -102,7 +102,7 @@ function getParamFromTableWithKeyValuePair($param, $table, $key, $value){
     $result = $db->query($select);
     // put query here to check if result is a null set or not
     if($result){
-      $i = 0;
+      $index = 0;
       while($row = $result->fetch_assoc()){
         $param_out = $row[$param];
         $id = $row['id'];
@@ -110,15 +110,17 @@ function getParamFromTableWithKeyValuePair($param, $table, $key, $value){
         if(isset($search[$param_out])){
           // then the category has been selected.
           if($GLOBALS['flag'] == 0){ 
-            if($i = 0){ $string .= ' AND ' . $key . " = " . $id; }
+            if($index == 0){ $string .= ' AND ' . $key . " = " . $id; }
             else{ $string .= ' OR ' . $key . " = " . $id; }
           }      
           else { 
             $string .= " WHERE " . $key . " = " . $id; 
             $GLOBALS['flag'] = 0;
-            $i = 1;
+            
           }
+          $index = 1;
         }
+        
       }
     }
     return $string; 
