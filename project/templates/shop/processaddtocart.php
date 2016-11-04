@@ -71,6 +71,13 @@ When he adds more stuff to cart, then the cycle begins all over again.
 		$result = $db->query($insert);
 	}
 
+	$select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
+
+	$totalcost = getResultFromQuery($select, 'totalcost');
+	echo "totalcost is $totalcost";
+
+
+
 
 	// $result = $db->query($insert);
 

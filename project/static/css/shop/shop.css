@@ -59,9 +59,23 @@ ul.search li{
 
 #searchoptionslink{
 	margin-left:40px;
+	text-decoration: underline;
 }
 
 #searchoptionslink:hover{
 	color: blue;
-	text-decoration: underline;
+	text-decoration: bold;
+}
+
+div.searchoptions{
+	display:none; 
+	width:30%; 
+	min-width: 200px; 
+	background:white; 
+	float:left;
+}
+
+td.searchtitle{
+	font-size:15px;
+	font-weight: bold
 }

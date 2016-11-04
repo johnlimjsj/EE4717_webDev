@@ -88,12 +88,10 @@ $select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as tot
 $totalcost = getResultFromQuery($select, 'totalcost');
 
 
-$select = "SELECT * from Order_items WHERE order_id=" . $order_id;
 
-$result = $db->query($select);
 
 echo 
-  '<form id = "checkout" method="post" action="processcheckout.php">
+  '
     <table>
       <tr> 
         <td> Product ID </td> 
@@ -103,6 +101,9 @@ echo
         <td> Sub Total </td> 
       </tr>
     ';
+$select = "SELECT * from Order_items WHERE order_id=" . $order_id;
+
+$result = $db->query($select);
   if($result){
     $i=0;
     while($row = $result->fetch_assoc()){
@@ -113,13 +114,29 @@ echo
       $product_price = getParamFromTableWithKeyValuePair('price', 'Products', 'id', $product_id);
 
       echo 
-        '<tr>' . 
-          '<td>' . $product_id . ' </td>' . 
-          '<td>' . $product_name . ' </td>' . 
-          '<td> $' . $product_price . ' </td>' . 
-          '<td> ' . $product_quantity . ' </td>' . 
-          '<td> $' . $product_quantity*$product_price . ' </td>' . 
-        '</tr>';   
+        "<tr> 
+          <td> $product_id  </td>  
+          <td> $product_name </td>
+          <td>$ $product_price </td>
+          <td> $product_quantity </td>
+          <td> $ " . $product_quantity*$product_price . " </td>   
+          <td> 
+            <form method='post' action='process_addone.php'> 
+              <input name='addone' type='submit' value='Add 1 item' /> 
+              <input type='hidden' name='hidden-productid' value='$product_id' />
+              <input type='hidden' name='hidden-orderid' value='$order_id' />
+            </form>
+          </td>
+          <td> 
+            <form method='post' action='process_removeone.php'> 
+              <input name='removeone' type='submit' value='Remove 1 item' /> 
+              <input type='hidden' name='hidden-productid' value='$product_id' />
+              <input type='hidden' name='hidden-orderid' value='$order_id' />
+              <input type='hidden' name='hidden-productqty' value='$product_quantity' />
+            </form>
+          </td>
+          
+        </tr>";   
         $i++;
     }  
   }
@@ -143,10 +160,10 @@ echo
     </tr>
   </table>
   
- 
-  <input type="hidden" name="hidden-order_id" value="' . $order_id . '" />
-  <input type="hidden" name="hidden-totalcost" value="' . $totalcost . '"/>
-  <input class="buttonBlack" type="submit" value="Buy" />
+  <form id = "checkout" method="post" action="processcheckout.php">
+    <input type="hidden" name="hidden-order_id" value="' . $order_id . '" />
+    <input type="hidden" name="hidden-totalcost" value="' . $totalcost . '"/>
+    <input class="buttonBlack" type="submit" value="Buy" />
   </form>';
 
   }

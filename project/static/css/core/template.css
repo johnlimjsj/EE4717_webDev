@@ -120,21 +120,24 @@ button {
         margin: 0;
         padding: 0;
         overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
+        font-size: 20px;
+        border-bottom: 3px solid #ccc;
+        background-color: #f3f3f3;
+        text-align: center;
     }
 
     /* Float the list items side by side */
-    ul.tab li {float: left;}
+    /*ul.tab li {float: left;}*/
 
     /* Style the links inside the list items */
-    ul.tab li[tab] {
+    ul.tab li {
         display: inline-block;
         color: black;
         text-align: center;
         padding: 10px 16px;
         text-decoration: none;
         transition: 0.3s;
+
     }
 
     /* Change background color of links on hover */

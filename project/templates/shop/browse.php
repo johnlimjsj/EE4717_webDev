@@ -147,10 +147,28 @@ function listProductsByQuery($query){
     <?php generateTableRows('name', 'Style') ?>
 
     </table>
+
+    
+   
+    <?php generateSearchSections('name', 'Categories', 'Filter by Categories') ?>
+    <?php generateSearchSections('name', 'Style', 'Filter by style') ?>
+    <?php generateSearchSections('name', 'Colours', 'Filter by colour') ?>
+     <div class="searchoptions" >
+      <table>
+        <tr>
+          <td class='searchtitle'> Filter by Price </td>
+        </tr>
+        <tr>
+          <td> <input type="number" name="min" placeholder="Min Price" size="4"/> </td>
+          <td> <input type="number" name="max" placeholder="Max Price" size="4"/></td>
+        </tr>
+      </table>
+    </div>
+
   </form>
 </div>
 
-<ul class="tab">
+<ul class="tab" style="clear:left;">
     <li tab="Search">Search</li>
     <li tab="Jacket">Jacket</li>
     <li tab="Shirt">Shirt</li>
@@ -196,8 +214,18 @@ function listProductsByQuery($query){
 </div>
 
 
+<?php 
+$customer_id = $_SESSION['valid_id'];
+$order_id = getOrderIDFromCustID($customer_id);
+
+$select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
+
+  $totalcost = getResultFromQuery($select, 'totalcost');
+?>
+
 <div>
-Total Price: $<span id='totalprice'> 0</span>
+Total Price: $ <?php echo $totalcost ?>
+<!-- <span id='totalprice'> 0</span> -->
 </div>
 <a href="checkout.php"> Check Out </a>
 <br><br><br><br><br><br>

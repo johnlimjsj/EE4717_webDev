@@ -75,6 +75,27 @@ function getParamFromTableWithKeyValuePair($param, $table, $key, $value){
     }
   }
 
+  function generateSearchSections($param, $table, $title){
+    include '../php/connect_DB.php';
+    $select = "SELECT " . $param . " FROM " . $table;
+    $result = $db->query($select);
+    if($result){
+      echo '<div class="searchoptions" ><table> ';
+      echo "<tr><td class='searchtitle'> $title </td></tr>";
+      while($row = $result->fetch_assoc()){
+        $param_out = $row[$param];
+        echo '
+        <tr>
+          <td>' . $param_out .  '</td>
+          <td> <input type="checkbox" name="' . $param_out . '" </td>
+        </tr>
+        ';
+      }
+      echo '</table></div>';
+    }
+  }
+
+
   function generateSearchStringFromParamTableKeyArray($string, $key, $param, $table){
     include '../php/connect_DB.php';
     $select = "SELECT * FROM " . $table;
