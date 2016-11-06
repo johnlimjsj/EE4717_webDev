@@ -36,7 +36,7 @@
             });
 
         let homelink = $('<a>Home</a>').attr('href','../../templates/index/index.php');
-        let aboutlink = $('<a>About</a>').attr('href','../../templates/about/about.html');
+        let aboutlink = $('<a>About</a>').attr('href','../../templates/about/about.php');
         let shoplink = $('<a>Shop</a>').attr('href','../../templates/shop/browse.php');
 
 

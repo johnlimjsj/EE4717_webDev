@@ -11,6 +11,7 @@
 	$mycomment = $_POST['mycomment'];
 
 	if (isset($_POST['submit'])) {
+
 		if (empty($myfirstname) || empty($mylastname) || empty($myphone) || 
 			empty($myemail) || empty($myenquiry) || empty($mycomment) ) {
 				// header("Location: contact.php?error=empty");
@@ -24,8 +25,8 @@
 		else {
 			//if enquirer is not logged in or unregistered
 			echo "Enquirer is not logged in or unregistered in database.";
-			$enquiry = "INSERT INTO Enquiries (firstname, lastname, phone, email, type, comment) 
-					 	VALUES ('$myfirstname', '$mylastname', '$myphone', '$myemail', 'myenquiry', 'mycomment')";
+			$enquiry = "INSERT INTO Enquiries (firstname, lastname, email, phone, type, comment) 
+					 	VALUES ('$myfirstname', '$mylastname', '$myemail', '$myphone', 'myenquiry', 'mycomment')";
 			$resultEnquiry = $db->query($enquiry);
 
 			if (!$resultEnquiry) {
@@ -49,7 +50,7 @@
     <meta name="author" content="">
 
     <!-- Registration CSS -->
-    <link href="../../static/css/register/register.css" rel="stylesheet" type="text/css">
+    <link href="../../static/css/contact/contact.css" rel="stylesheet" type="text/css">
 
     <!-- Common CSS -->
         <!-- Core CSS -->
@@ -89,7 +90,7 @@
 
 <!--Button toggling Javascript-->
     <script src="../../static/js/generateContent/baseContent.js"></script>
-    <script src="../../static/js/generateContent/itemCategories.js"></script>
-    <script src="../../static/js/core/modal.js"></script>
+<!--     <script src="../../static/js/generateContent/itemCategories.js"></script>
+    <script src="../../static/js/core/modal.js"></script> -->
 
 </html>

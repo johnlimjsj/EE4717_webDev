@@ -42,7 +42,7 @@
 
 <img src="../../static/img/contact/contactUs.png" id="contactUs">
 
-            <form name="contact" method="GET" action="contact.inc.php">
+            <form name="contact" method="POST" action="enquiry.php">
 
                 <fieldset id="contact">
 
@@ -50,16 +50,16 @@
                     <br>
 
                     <label for="myfirstname"> First Name<sup>*</sup> </label>
-                    <input type="mytext" name="myfirstname" value="dfgh" required>
+                    <input type="mytext" name="myfirstname" value="<?php echo $_SESSION['valid_firstname'] ?>" >
 
                     <label for="mylastname"> Last Name<sup>*</sup> </label>
-                    <input type="text" name="mylastname" required>
+                    <input type="text" name="mylastname" value="<?php echo $_SESSION['valid_lastname'] ?>" >
 
                     <label for="myemail"> Email<sup>*</sup> </label>
-                    <input type="text" name="myemail" required>
+                    <input type="text" name="myemail" value="<?php echo $_SESSION['valid_email'] ?>" >
 
                     <label for="myphone"> Mobile </label>
-                    <input type="text" name="myphone">
+                    <input type="text" name="myphone" value="<?php echo $_SESSION['valid_phone'] ?>">
 
                     <label for="myenquiry"> Type of Enquiry </label>
                     <select name="myenquiry">
@@ -71,7 +71,7 @@
                     </select><br>
 
                     <label for="mycomment"> Comments<sup>*</sup> </label>
-                    <textarea name="mycomment" cols="20" rows="6" required></textarea>
+                    <textarea name="mycomment" cols="20" rows="6" ></textarea>
 
                 </fieldset>
                 

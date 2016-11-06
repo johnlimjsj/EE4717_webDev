@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
 <?php 
 
 include '../php/connect_DB.php'; 
@@ -33,14 +29,17 @@ function listProductsByQuery($query){
     }
   }
 
-  
-
   function listproducts($catid){
     include '../php/connect_DB.php';
     $select = "SELECT * FROM Products WHERE cat_id=" . $catid;
     listProductsByQuery($select);
   }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -196,9 +195,6 @@ function listProductsByQuery($query){
 <div id="Tie" class="tabcontent">
   <?php listproducts(5); ?>
 </div>
-
-
-
 
 
 <!-- The Modal -->

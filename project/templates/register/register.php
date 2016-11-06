@@ -22,6 +22,7 @@
 					 "alert('Fill out all fields.');" . 
 					 "window.location.href='javascript:history.back(1);';" . 
 					 "</script>";
+				exit;
 		}
 
 		else {
@@ -31,57 +32,63 @@
 					 "alert('Sorry passwords do not match.');" . 
 					 "window.location.href='javascript:history.back(1);';" . 
 					 "</script>";
-			}
+				exit;
+			} 
 
-			$register = "SELECT username FROM Login 
-					  WHERE username = '$username'";
-			$resultRegister = $db->query($register);
+			else{
 
-			if ($resultRegister->num_rows >0 ) {
-				//if user already registered in database
-				// header("Location: registration.php?error=username");
-				echo "<script>" . 
-					 "alert('Username " . $username . " has already been taken.');" . 
-					 "window.location.href='javascript:history.back(1);';" . 
-					 "</script>";
-			}
+				$register = "SELECT username FROM Login 
+						  WHERE username = '$username'";
+				$resultRegister = $db->query($register);
 
-			else {
-				//register user to Customers database
-				$password = md5($password);
-				$insert = "INSERT INTO Delivery_addresses (addr) VALUES (". $address . ")";
-
-				$cust = "INSERT INTO Customers (firstname, lastname, phone, 
-						email, address, paymentinfo) 
-						VALUES ('$firstname', '$lastname', '$phone', 
-						'$email', '$address', '$paymentinfo')";
-				$resultCust = $db->query($cust);
-
-				if (!$resultCust){
+				if ($resultRegister->num_rows >0 ) {
+					//if user already registered in database
+					// header("Location: registration.php?error=username");
 					echo "<script>" . 
-						 "alert('Customer query failed.');" . 
+						 "alert('Username " . $username . " has already been taken.');" . 
 						 "window.location.href='javascript:history.back(1);';" . 
 						 "</script>";
 				}
 
 				else {
-					//register user to Login database
-					$select = "SELECT * FROM Customers WHERE email='$email'";
-					$resultSelect = $db->query($select);
-					$rowCust = $resultSelect->fetch_assoc();
-					$id = $rowCust['id'];
-					$login = "INSERT INTO Login (customer_id, username, password) 
-							 VALUES (" . $id . " , '" . $username . "', '" . $password . "')";
-					$resultLogin = $db->query($login);
+					//register user to Customers database
+					$password = md5($password);
+					$insert = "INSERT INTO Delivery_addresses (addr) VALUES (". $address . ")";
 
-					if (!$resultLogin) {
+					$cust = "INSERT INTO Customers (firstname, lastname, phone, 
+							email, address, paymentinfo) 
+							VALUES ('$firstname', '$lastname', '$phone', 
+							'$email', '$address', '$paymentinfo')";
+					$resultCust = $db->query($cust);
+
+					if (!$resultCust){
 						echo "<script>" . 
-							 "alert('Login query failed.');" . 
+							 "alert('Customer query failed.');" . 
 							 "window.location.href='javascript:history.back(1);';" . 
 							 "</script>";
 					}
 
-					else { 
+					else {
+						//register user to Login database
+						$select = "SELECT * FROM Customers WHERE email='$email'";
+						$resultSelect = $db->query($select);
+						$rowCust = $resultSelect->fetch_assoc();
+						$id = $rowCust['id'];
+						$login = "INSERT INTO Login (customer_id, username, password) 
+								 VALUES (" . $id . " , '" . $username . "', '" . $password . "')";
+						$resultLogin = $db->query($login);
+
+						if (!$resultLogin) {
+							echo "<script>" . 
+								 "alert('Login query failed.');" . 
+								 "window.location.href='javascript:history.back(1);';" . 
+								 "</script>";
+						}
+
+						else { 
+			
+
+
 ?>
 
 <html lang="en">
@@ -115,14 +122,15 @@
 <mainContent>
 
 <?php
-						//registration successful
-						echo 
-							"<center>" . 
-							"<h1>Registration</h1>" . 
-							"<h2>You are now registered!</h1>" . 
-							"Welcome ". $firstname . " " . $lastname . "<br/>" . 
-							"<button type='button' class='button buttonBlack' onclick='location.href=\"../index/index.php\";'>LOGIN</button>" . 
-							"</center>";
+							//registration successful
+							echo 
+								"<center>" . 
+								"<h1>Registration</h1>" . 
+								"<h2>You are now registered!</h1>" . 
+								"Welcome ". $firstname . " " . $lastname . "<br/>" . 
+								"<button type='button' class='button buttonBlack' onclick='location.href=\"../index/index.php\";'>LOGIN</button>" . 
+								"</center>";
+						}
 					}
 				}
 			}

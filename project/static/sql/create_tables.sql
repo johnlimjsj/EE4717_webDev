@@ -1,47 +1,4 @@
-
 CREATE DATABASE MixAndMatch;
-
-create table Customers
-(  
-	id int unsigned not null auto_increment primary key,
-	measure_id int unsigned,
-	firstname varchar(50),
-	lastname varchar(50),
-	phone int,
-	email varchar(100),
-	address varchar(100),
-	paymentinfo varchar(50),
-	FOREIGN KEY(measure_id) REFERENCES Measurements(id)
-); 
-
-create table Delivery_Addresses
-(
-	id int unsigned not null auto_increment primary key,
-	addr char(100),
-	postalcode int unsigned
-);
-
-create table Orders
-( 
-	id int unsigned not null auto_increment primary key,
-	customer_id int unsigned not null,
-	thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	delivery_add_id int unsigned,
-	status ENUM('Pending','Processing','Shipped','Arrived'),
-	totalcost float not null,
-	FOREIGN KEY(customer_id) REFERENCES Customers(id),
-	FOREIGN KEY(delivery_add_id) REFERENCES Delivery_Addresses(id)
-);
-
-create table Order_items
-( 
-	id int unsigned not null auto_increment primary key,
-	order_id int unsigned not null,
-	product_id int unsigned not null,
-	quantity int unsigned not null,
-	FOREIGN KEY(order_id) REFERENCES Orders(id),
-	FOREIGN KEY(product_id) REFERENCES Products(id)
-);
 
 create table Categories
 ( 
@@ -76,8 +33,35 @@ create table Products
 	FOREIGN KEY(cat_id) REFERENCES Categories(id),
 	FOREIGN KEY(colour_id) REFERENCES Colours(id),
 	FOREIGN KEY(style_id) REFERENCES Style(id)
-
 );
+
+create table Measurements
+( 
+	id int unsigned not null auto_increment primary key,
+	torsolength float,
+	armlength float,
+	shoulderwidth float,
+	chest float,
+	waist float,
+	hips float,
+	bicep float,
+	pantslength float,
+	thigh float,
+	neck float
+);
+
+create table Customers
+(  
+	id int unsigned not null auto_increment primary key,
+	measure_id int unsigned,
+	firstname varchar(50),
+	lastname varchar(50),
+	phone int,
+	email varchar(100),
+	address varchar(100),
+	paymentinfo varchar(50),
+	FOREIGN KEY(measure_id) REFERENCES Measurements(id)
+); 
 
 create table Login
 ( 
@@ -101,20 +85,40 @@ create table Enquiries
  	FOREIGN KEY(customer_id) REFERENCES Customers(id)
 );
 
-create table Measurements
+create table Delivery_Addresses
+(
+	id int unsigned not null auto_increment primary key,
+	addr char(100),
+	postalcode int unsigned
+);
+
+create table Orders
 ( 
 	id int unsigned not null auto_increment primary key,
-	torsolength float,
-	armlength float,
-	shoulderwidth float,
-	chest float,
-	waist float,
-	hips float,
-	bicep float,
-	pantslength float,
-	thigh float,
-	neck float
+	customer_id int unsigned not null,
+	thedate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	delivery_add_id int unsigned,
+	status ENUM('Pending','Processing','Shipped','Arrived'),
+	totalcost float not null,
+	FOREIGN KEY(customer_id) REFERENCES Customers(id),
+	FOREIGN KEY(delivery_add_id) REFERENCES Delivery_Addresses(id)
 );
+
+create table Order_items
+( 
+	id int unsigned not null auto_increment primary key,
+	order_id int unsigned not null,
+	product_id int unsigned not null,
+	quantity int unsigned not null,
+	FOREIGN KEY(order_id) REFERENCES Orders(id),
+	FOREIGN KEY(product_id) REFERENCES Products(id)
+);
+
+
+
+
+
+
 
 
 
