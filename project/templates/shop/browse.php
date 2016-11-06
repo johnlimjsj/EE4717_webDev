@@ -3,7 +3,7 @@
 
 <head>
 <?php 
-session_start();
+
 include '../php/connect_DB.php'; 
 include 'functions.php';
 
@@ -109,6 +109,7 @@ function listProductsByQuery($query){
       $GLOBALS['flag'] = 0;
     }
   }
+  echo $select;
 ?>
 
 <form id="refinesearch" method="post"  action="<?php echo $_SERVER['PHP_SELF']; ?>" >
@@ -173,7 +174,7 @@ function listProductsByQuery($query){
 
 <div id="Search" class="tabcontent firsttab">
 
-  <?php echo $select; listProductsByQuery($select); ?>
+  <?php listProductsByQuery($select); ?>
 </div>
 
 <div id="Jacket" class="tabcontent firsttab">
@@ -210,12 +211,18 @@ function listProductsByQuery($query){
 
 
 <?php 
+
 $customer_id = $_SESSION['valid_id'];
-$order_id = getOrderIDFromCustID($customer_id);
+if($customer_id != NULL){
+  $order_id = getOrderIDFromCustID($customer_id);
+    if($order_id != NULL){
+    $select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
 
-$select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
+    $totalcost = getResultFromQuery($select, 'totalcost');
+    }
+}
 
-  $totalcost = getResultFromQuery($select, 'totalcost');
+
 ?>
 
 <div>

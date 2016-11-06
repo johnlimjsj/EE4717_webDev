@@ -62,7 +62,7 @@ include "../php/connect_DB.php";
         $_SESSION['valid_lastname'] = $lastname;
         $_SESSION['valid_email'] = $email;
         $_SESSION['valid_id'] = $customerid;
-        echo '<h1>sdfghj' . $_SESSION['valid_id'];
+        
       }
 
       //var_dump ($_SESSION);
@@ -71,12 +71,12 @@ include "../php/connect_DB.php";
 ?>
     <!-- Login Form -->
     <?php
-    echo '<h1>' . $_SESSION['valid_id'] . '</h1>';
+    
       if (isset($_SESSION['valid_userid']))
       {
         echo 
-            "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
-            "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
+            "<h2> Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . $_SESSION['valid_id'] . 
+            "You are logged in as: " . $_SESSION['valid_userid'] . " </h2><br />" . 
             "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button>";
       }
       else

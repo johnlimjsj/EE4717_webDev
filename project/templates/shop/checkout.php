@@ -43,16 +43,17 @@ include 'functions.php';
   $select = "SELECT * from Measurements WHERE id=$measure_id";
   $result = $db->query($select);
   if($result){
-    echo '<form id=measurements method="post" action="processmeasurements.php">' ;
+    echo '<form id=measurements method="post" action="processmeasurements.php">
+    <table>' ;
     $i=0;
     while($row = $result->fetch_assoc()){
 
       foreach($row as $key => $value){
-        print "<div> $key <input type='text' name=$key value=$value />  </div>";
+        print "<tr><td> $key </td><td><input type='text' name=$key value=$value />  </td></tr>";
       }
     }
-    echo '<input type="submit" value="Update or submit">';
-    echo '</form>';
+    echo '<tr><td><input type="submit" value="Update or submit"></td></tr>';
+    echo '</table></form>';
   }
 
 
@@ -63,9 +64,9 @@ include 'functions.php';
 <?php 
 
 
-
+$select = "SELECT * from orders where customer_id=" . $_SESSION['valid_id'] . " AND status='Pending'";
 // get customer info
-  if($_SESSION['valid_id'] == NULL){
+  if($_SESSION['valid_id'] == NULL or isQueryNull($select)){
     echo 'your cart is empty';
     
   }
@@ -79,9 +80,9 @@ include 'functions.php';
 
 $order_id = getOrderIDFromCustID($customer_id);
 
-echo 'cust id: ' . $customer_id . '<br>';
+// echo 'cust id: ' . $customer_id . '<br>';
 
-echo 'orderid: ' . $order_id . '<br>';
+// echo 'orderid: ' . $order_id . '<br>';
 
 $select = "SELECT TRUNCATE(SUM(Products.price * Order_items.quantity), 2) as totalcost FROM Order_items INNER JOIN Products ON Order_items.product_id=Products.id WHERE Order_items.order_id=" . $order_id;
 
@@ -93,12 +94,12 @@ $totalcost = getResultFromQuery($select, 'totalcost');
 echo 
   '
     <table>
-      <tr> 
-        <td> Product ID </td> 
+      <tr style="background:#f1f1f1; font-weight:bold;"> 
         <td> Product Name </td> 
         <td> Unit Price </td> 
         <td> Quantity </td> 
         <td> Sub Total </td> 
+
       </tr>
     ';
 $select = "SELECT * from Order_items WHERE order_id=" . $order_id;
@@ -115,7 +116,7 @@ $result = $db->query($select);
 
       echo 
         "<tr> 
-          <td> $product_id  </td>  
+          
           <td> $product_name </td>
           <td>$ $product_price </td>
           <td> $product_quantity </td>
@@ -180,19 +181,19 @@ $result = $db->query($select);
  
 <script>
   
-    // $('form#checkout').submit(function(e){
-    //   e.preventDefault();
-    //   $.ajax({
-    //     url: "processcheckout.php",
-    //     type: "POST",
-    //     data: $('form#checkout').serialize(),
-    //     success: function(data){
-    //       $('div#ordercomplete').show();
-    //       alert('ordered');
-    //     },
-    //     error: function  (jXHR, textStatus, errorThrown){},
-    //   });
-    // });
+    $('form#checkout').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: "processcheckout.php",
+        type: "POST",
+        data: $('form#checkout').serialize(),
+        success: function(data){
+          $('div#ordercomplete').show();
+          alert('ordered');
+        },
+        error: function  (jXHR, textStatus, errorThrown){},
+      });
+    });
 
 </script>
 
