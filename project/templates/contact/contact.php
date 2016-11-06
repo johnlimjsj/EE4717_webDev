@@ -34,7 +34,7 @@
 <?php
     if (!empty($_SESSION['valid_userid'])) {
         echo 
-            "Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . 
+            "<h2>Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "!</h2>" . 
             "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
             "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button><br>";
     }
@@ -96,6 +96,7 @@
                     </td>
                 </tr>
             </table>
+            <br><br><br><br>
             
 </mainContent>
 <!--Button toggling Javascript-->

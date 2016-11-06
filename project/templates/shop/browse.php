@@ -101,14 +101,14 @@ function listProductsByQuery($query){
   // echo $select;
 
   if(isset($_POST['wildcard'])){
-    $string_like = " name LIKE '%" . $_POST['wildcard'] . "%' AND description LIKE '%" . $_POST['wildcard'] ."%' ";
-    if($GLOBALS['flag'] == 0){ $select .= " AND " . $string_like; }
+    $string_like = " name LIKE '%" . $_POST['wildcard'] . "%' OR description LIKE '%" . $_POST['wildcard'] ."%' ";
+    if($GLOBALS['flag'] == 0){ $select .= " OR " . $string_like; }
     else { 
       $select .= " WHERE " . $string_like; 
       $GLOBALS['flag'] = 0;
     }
   }
-  echo $select;
+  // echo $select;
 ?>
 
 <form id="refinesearch" method="post"  action="<?php echo $_SERVER['PHP_SELF']; ?>" >
@@ -209,6 +209,7 @@ function listProductsByQuery($query){
 <?php 
 
 $customer_id = $_SESSION['valid_id'];
+// $totalcost = 0.00;
 if($customer_id != NULL){
   $order_id = getOrderIDFromCustID($customer_id);
     if($order_id != NULL){

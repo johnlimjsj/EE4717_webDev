@@ -76,8 +76,8 @@ include "../php/connect_DB.php";
       if (isset($_SESSION['valid_userid']))
       {
         echo 
-            "<h2> Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "! <br />" . $_SESSION['valid_id'] . 
-            "You are logged in as: " . $_SESSION['valid_userid'] . " </h2><br />" . 
+            "<h2>Welcome " . $_SESSION['valid_firstname'] . " " . $_SESSION['valid_lastname'] . "!</h2>" . 
+            "You are logged in as: " . $_SESSION['valid_userid'] . " <br />" . 
             "<button type='button' class='buttonBlackInverse' onclick='location.href=\"../register/logout.php\";'>LOGOUT</button>";
       }
       else
