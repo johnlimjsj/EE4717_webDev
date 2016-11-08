@@ -24,6 +24,9 @@
         <!-- Custom Fonts -->
         <link href="../../static/css/core/customfonts.css" rel="stylesheet" type="text/css">
 
+        <!-- Form Validation Javascript-->
+        <script src="../../static/js/register/register.js"></script>
+
         <!--jQuery libraries-->
         <script src="../../static/js/core/jquery-1.11.3.min.js"></script>
 </head>
@@ -43,7 +46,7 @@
     ?>
     <center>
         <h1>Registration Page</h1>
-        <form action="register.php" method=POST>
+        <form action="register.php" method=POST name="registration_form">
 
         <h2>Personal Particulars</h2>
         <input type=text name=firstname placeholder="FIRST NAME"><br /><br />
@@ -64,12 +67,13 @@
     </center>
 
     <br><br><br><br><br>
+
 </mainContent>
 
 </body>
 
 <!--Button toggling Javascript-->
     <script src="../../static/js/generateContent/baseContent.js"></script>
-    <script src="../../static/js/generateContent/itemCategories.js"></script>
-    <script src="../../static/js/core/modal.js"></script>
+    <!-- <script src="../../static/js/generateContent/itemCategories.js"></script> -->
+    <!-- <script src="../../static/js/core/modal.js"></script> -->
 </html>

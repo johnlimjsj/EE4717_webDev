@@ -209,7 +209,7 @@ function listProductsByQuery($query){
 <?php 
 
 $customer_id = $_SESSION['valid_id'];
-// $totalcost = 0.00;
+$totalcost = 0.50;
 if($customer_id != NULL){
   $order_id = getOrderIDFromCustID($customer_id);
     if($order_id != NULL){
@@ -223,10 +223,11 @@ if($customer_id != NULL){
 ?>
 
 <div>
-Total Price: $ <?php echo $totalcost ?>
+<h2>Total Price: $ <?php echo $totalcost ?></h2>
 <!-- <span id='totalprice'> 0</span> -->
 </div>
-<a href="checkout.php"> Check Out </a>
+<button type="button" class="buttonBlackInverse" onclick="location.href='checkout.php';">CHECKOUT</button>
+
 <br><br><br><br><br><br>
 
 </mainContent>
