@@ -13,7 +13,7 @@
 	if (isset($_POST['submit'])) {
 
 		if (empty($myfirstname) || empty($mylastname) || empty($myphone) || 
-			empty($myemail) || empty($myenquiry) || empty($mycomment) ) {
+			empty($myemail) || empty($mycomment) ) {
 				// header("Location: contact.php?error=empty");
 				echo "<script>" . 
 					 "alert('Fill out all necesary fields.');" . 
@@ -26,7 +26,7 @@
 			//if enquirer is not logged in or unregistered
 			echo "Enquirer is not logged in or unregistered in database.";
 			$enquiry = "INSERT INTO Enquiries (firstname, lastname, email, phone, type, comment) 
-					 	VALUES ('$myfirstname', '$mylastname', '$myemail', '$myphone', 'myenquiry', 'mycomment')";
+					 	VALUES ('$myfirstname', '$mylastname', '$myemail', '$myphone', '$myenquiry', '$mycomment')";
 			$resultEnquiry = $db->query($enquiry);
 
 			if (!$resultEnquiry) {

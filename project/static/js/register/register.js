@@ -1,9 +1,7 @@
-alert("hello ");
-
 window.onload = init;
 
 var firstnameNode = document.getElementById("firstname");
-var lasttnameNode = document.getElementById("lastname");
+var lastnameNode = document.getElementById("lastname");
 var phoneNode = document.getElementById("phone");
 var emailNode = document.getElementById("email");
 var addressNode = document.getElementById("address");

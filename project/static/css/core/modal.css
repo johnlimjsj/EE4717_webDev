@@ -15,7 +15,8 @@
 
 /* Modal Content */
 .modal-content {
-    background-color: yellow;
+    background-color: black;
+    opacity: 0.75;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -24,8 +25,10 @@
 }
 
 .modal-content p{
-    font-size: 30px;
-    color: green;
+    font-size: 20px;
+    color: white;
+    opacity: 1.0;
+    text-align: center;
 }
 /* The Close Button */
 .close {
@@ -37,7 +40,7 @@
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: red;
     text-decoration: none;
     cursor: pointer;
 }

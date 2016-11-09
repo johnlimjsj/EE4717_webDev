@@ -189,7 +189,7 @@ $result = $db->query($select);
         data: $('form#checkout').serialize(),
         success: function(data){
           $('div#ordercomplete').show();
-          alert('ordered');
+          // alert('Your order has been submitted.');
         },
         error: function  (jXHR, textStatus, errorThrown){},
       });

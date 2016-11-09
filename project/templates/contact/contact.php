@@ -1,6 +1,7 @@
 <?php
     session_start();
 ?>
+
 <html lang="en">
 <!-- Base for Dashboard -->
 <head>
@@ -42,7 +43,7 @@
 
 <img src="../../static/img/contact/contactUs.png" id="contactUs">
 
-            <form name="contact" method="POST" action="enquiry.php">
+            <form name="contact" method="POST" action="enquiry.php" id="contact_form">
 
                 <fieldset id="contact">
 
@@ -50,19 +51,19 @@
                     <br>
 
                     <label for="myfirstname"> First Name<sup>*</sup> </label>
-                    <input type="mytext" name="myfirstname" value="<?php echo $_SESSION['valid_firstname'] ?>" >
+                    <input type="mytext" name="myfirstname" id="myfirstname" value="<?php echo $_SESSION['valid_firstname'] ?>" >
 
                     <label for="mylastname"> Last Name<sup>*</sup> </label>
-                    <input type="text" name="mylastname" value="<?php echo $_SESSION['valid_lastname'] ?>" >
+                    <input type="text" name="mylastname" id="mylastname" value="<?php echo $_SESSION['valid_lastname'] ?>" >
 
                     <label for="myemail"> Email<sup>*</sup> </label>
-                    <input type="text" name="myemail" value="<?php echo $_SESSION['valid_email'] ?>" >
+                    <input type="text" name="myemail" id="myemail" value="<?php echo $_SESSION['valid_email'] ?>" >
 
                     <label for="myphone"> Mobile </label>
-                    <input type="text" name="myphone" value="<?php echo $_SESSION['valid_phone'] ?>">
+                    <input type="text" name="myphone" id="myphone" value="<?php echo $_SESSION['valid_phone'] ?>">
 
                     <label for="myenquiry"> Type of Enquiry </label>
-                    <select name="myenquiry">
+                    <select name="myenquiry" id="myenquiry">
                         <option value="general">General Enquiry</option>
                         <option value="product">Products/Services</option>
                         <option value="shipping">Shipping</option>
@@ -71,12 +72,12 @@
                     </select><br>
 
                     <label for="mycomment"> Comments<sup>*</sup> </label>
-                    <textarea name="mycomment" cols="20" rows="6" ></textarea>
+                    <textarea name="mycomment" id="mycomment" cols="20" rows="6" ></textarea>
 
                 </fieldset>
                 
-                <button class="button buttonBlack inlineBlock" type="submit">SUBMIT</button>
-                <button class="button buttonBlack inlineBlock" type="reset">RESET</button>
+                <button class="button buttonBlack inlineBlock" type="submit" name="submit" id="submit">SUBMIT</button>
+                <button class="button buttonBlack inlineBlock" type="reset" id="reset">RESET</button>
             </form>
 
             <h1>Locate Us</h1>
@@ -99,6 +100,10 @@
             <br><br><br><br>
             
 </mainContent>
+
+<!-- Form Validation Javascript-->
+<script src="../../static/js/contact/contact.js"></script>
+
 <!--Button toggling Javascript-->
 <script src="../../static/js/generateContent/baseContent.js"></script>
 <!-- <script src="{%  static 'js/plugins/morris/raphael.min.js'%}"></script> -->

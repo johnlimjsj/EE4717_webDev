@@ -111,7 +111,7 @@ function listProductsByQuery($query){
   // echo $select;
 ?>
 
-<form id="refinesearch" method="post"  action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<form id="refinesearch" method="post" >
   <ul class="search">
     <li><input type="text" name="wildcard" placeholder="Enter Search Term" /></li>
     <li><input type="submit" value="Search" /></li>
@@ -234,19 +234,19 @@ if($customer_id != NULL){
 
 <script>
   
-    // $('form#addtomycart').submit(function(e){
-    //   e.preventDefault();
-    //   $.ajax({
-    //     url: "processaddtocart.php",
-    //     type: "POST",
-    //     data: $('form#addtomycart').serialize(),
-    //     success: function(data){
-    //       // $('div#ordercomplete').show();
+    $('form#addtomycart').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: "processaddtocart.php",
+        type: "POST",
+        data: $('form#addtomycart').serialize(),
+        success: function(data){
+          // $('div#ordercomplete').show();
           
-    //     },
-    //     error: function  (jXHR, textStatus, errorThrown){},
-    //   });
-    // });
+        },
+        error: function  (jXHR, textStatus, errorThrown){},
+      });
+    });
 
 </script>
 

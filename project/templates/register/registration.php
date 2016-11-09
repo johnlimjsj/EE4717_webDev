@@ -24,9 +24,6 @@
         <!-- Custom Fonts -->
         <link href="../../static/css/core/customfonts.css" rel="stylesheet" type="text/css">
 
-        <!-- Form Validation Javascript-->
-        <script src="../../static/js/register/register.js"></script>
-
         <!--jQuery libraries-->
         <script src="../../static/js/core/jquery-1.11.3.min.js"></script>
 </head>
@@ -46,23 +43,23 @@
     ?>
     <center>
         <h1>Registration Page</h1>
-        <form action="register.php" method=POST name="registration_form">
+        <form action="register.php" method=POST name="registration_form" id="registration_form">
 
         <h2>Personal Particulars</h2>
-        <input type=text name=firstname placeholder="FIRST NAME"><br /><br />
-        <input type=text name=lastname placeholder="LAST NAME"><br /><br />
-        <input type=text name=phone placeholder="PHONE"><br /><br />
-        <input type=text name=email placeholder="EMAIL"><br /><br />
-        <input type=text name=address placeholder="ADDRESS"><br /><br />
-        <input type=text name=paymentinfo placeholder="PAYMENT INFO"><br /><br />
+        <input type=text name=firstname id="firstname" placeholder="FIRST NAME"><br /><br />
+        <input type=text name=lastname id="lastname" placeholder="LAST NAME"><br /><br />
+        <input type=text name=phone id="phone" placeholder="PHONE"><br /><br />
+        <input type=text name=email id="email" placeholder="EMAIL"><br /><br />
+        <input type=text name=address id="address" placeholder="ADDRESS"><br /><br />
+        <input type=text name=paymentinfo id="paymentinfo" placeholder="PAYMENT INFO"><br /><br />
 
         <h2>Account Details</h2>
-        <input type=text name=username placeholder="USERNAME"><br /><br />
-        <input type=password name=password placeholder="PASSWORD"><br /><br />
-        <input type=password name=password2 placeholder="CONFIRM PASSWORD"><br /><br />
+        <input type=text name=username id="username" placeholder="USERNAME"><br /><br />
+        <input type=password name=password id="password" placeholder="PASSWORD"><br /><br />
+        <input type=password name=password2 id="password2" placeholder="CONFIRM PASSWORD"><br /><br />
 
-        <button class="buttonBlackInverse" type="submit" name="submit">SUBMIT</button>
-        <button class="buttonBlackInverse" type="reset" name="reset">RESET</button>
+        <button class="buttonBlackInverse" type="submit" name="submit" id="submit">SUBMIT</button>
+        <button class="buttonBlackInverse" type="reset" name="reset" id="reset">RESET</button>
         </form>
     </center>
 
@@ -71,6 +68,9 @@
 </mainContent>
 
 </body>
+
+<!-- Form Validation Javascript-->
+    <script src="../../static/js/register/register.js"></script>
 
 <!--Button toggling Javascript-->
     <script src="../../static/js/generateContent/baseContent.js"></script>
