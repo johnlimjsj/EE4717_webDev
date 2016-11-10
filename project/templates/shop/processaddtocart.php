@@ -22,7 +22,11 @@ When he adds more stuff to cart, then the cycle begins all over again.
 	
 	if($_SESSION['valid_id'] == NULL){
 		echo 'null lar';
-		$insert = "INSERT INTO Customers () VALUES ()";
+		$insert = "INSERT INTO Measurements () VALUES ()";
+		$db->query($insert);
+
+		$measure_id = getRecentIDEntryFromTable('Measurements');
+		$insert = "INSERT INTO Customers (measure_id) VALUES ($measure_id)";
 		$db->query($insert);
 
 		$_SESSION['valid_id'] =  getRecentIDEntryFromTable('Customers');

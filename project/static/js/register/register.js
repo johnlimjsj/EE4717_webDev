@@ -1,4 +1,4 @@
-window.onload = init;
+// window.onload = init;
 
 var firstnameNode = document.getElementById("firstname");
 var lastnameNode = document.getElementById("lastname");
@@ -21,10 +21,14 @@ usernameNode.addEventListener("change", chkUsername, false);
 passwordNode.addEventListener("change", chkPassword, false);
 password2Node.addEventListener("change", chkPassword, false);
 
+
+
 function chkSubmit(){
   // var passorfail = ()
-  return chkName();
+
+  return false;
 }
+
 
 function init (){
   submitNode.onsubmit=chkName;
@@ -33,13 +37,15 @@ function init (){
 
 function chkName(event) {
   var myNameTarget = event.currentTarget;
-  var patt = /^[a-zA-Z]$/;
+  var patt = /^[a-zA-Z]+$/;
   var pos = myNameTarget.value.search(patt);
 
   if (pos != 0) {
-    alert("The name you entered (" + myNameTarget.value + ") is invalid. \n" + "The name should only contain alphabet characters and character spaces.");
+    alert("The name you dfghjentered (" + myNameTarget.value + ") is invalid. \n" + "The name should only contain alphabet characters and character spaces.");
     returnFalse(myNameTarget);
+    return false;
   } 
+  return true;
 }
 
 function chkPhone(event) {
@@ -50,7 +56,9 @@ function chkPhone(event) {
   if (pos != 0) {
     alert("The phone number you entered (" + myPhoneTarget.value + ") is invalid. \n" + "Please re-enter your phone number.");
     returnFalse(myPhoneTarget);
+    return false;
   } 
+  return true;
 }
 
 function chkEmail(event) {
@@ -85,7 +93,7 @@ function chkAddress(event) {
 
 function chkUsername(event) {
   var myUsernameTarget = event.currentTarget;
-  var patt = /^[a-zA-Z0-9]$/;
+  var patt = /^[a-zA-Z0-9]+$/;
   var pos = myUsernameTarget.value.search(patt);
 
   if (pos != 0) {

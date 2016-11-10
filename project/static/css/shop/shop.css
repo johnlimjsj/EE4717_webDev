@@ -79,3 +79,26 @@ td.searchtitle{
 	font-size:15px;
 	font-weight: bold
 }
+
+.checkout_table{
+	margin:auto;
+}
+
+.checkout_table td{
+	text-transform: uppercase;
+}
+
+.checkout_summary{
+	margin: auto;
+}
+
+.checkout_summary td{
+	padding: 10px;
+	/*font-size: 15px;*/
+	text-align: center;
+	text-transform: uppercase;	
+}
+
+h2{
+	text-align: center;
+}

@@ -14,6 +14,9 @@ include 'functions.php';
 
     <!-- Common CSS -->
         <!-- Core CSS -->
+        <link href="../../static/css/shop/shop.css" rel="stylesheet" type="text/css">
+
+        <!-- Core CSS -->
         <link href="../../static/css/core/core.css" rel="stylesheet" type="text/css">
         
         <!-- Template CSS -->
@@ -39,21 +42,32 @@ include 'functions.php';
 <div id="Measurements" class="tabcontent firsttab">
   <h2> Your Profile </h2>
 <?php
-  $measure_id=1;
-  $select = "SELECT * from Measurements WHERE id=$measure_id";
-  $result = $db->query($select);
-  if($result){
-    echo '<form id=measurements method="post" action="processmeasurements.php">
-    <table>' ;
-    $i=0;
-    while($row = $result->fetch_assoc()){
+  if($_SESSION['valid_id'] == NULL){
+    echo 'Add items to cart first.';
+  }
+  else{
+    $customer_id = $_SESSION['valid_id'];
+    $measure_id = getParamFromTableWithKeyValuePair('measure_id','Customers','id',$customer_id);
+    $select = "SELECT * from Measurements WHERE id=$measure_id";
+    $result = $db->query($select);
+    if($result){
+      echo '<form id=measurements method="post" action="processmeasurements.php">
+      <table class=checkout_table>' ;
+      $i=0;
+      while($row = $result->fetch_assoc()){
 
-      foreach($row as $key => $value){
-        print "<tr><td> $key </td><td><input type='text' name=$key value=$value />  </td></tr>";
+        foreach($row as $key => $value){
+          if($key=='id'){}
+          else{
+            if($value==NULL){$value='';}
+            print "<tr><td> $key </td><td><input type='text' name=$key value=$value ></input>  </td></tr>";
+          }
+          
+        }
       }
+      echo '<tr><td><button class="buttonBlackInverse" type="submit"> UPDATE OR SUBMIT</td></tr>';
+      echo '</table></form>';
     }
-    echo '<tr><td><input type="submit" value="Update or submit"></td></tr>';
-    echo '</table></form>';
   }
 
 
@@ -92,8 +106,8 @@ $totalcost = getResultFromQuery($select, 'totalcost');
 
 
 echo 
-  '
-    <table>
+  '<br><br>
+    <table class=checkout_summary>
       <tr style="background:#f1f1f1; font-weight:bold;"> 
         <td> Product Name </td> 
         <td> Unit Price </td> 
@@ -122,15 +136,15 @@ $result = $db->query($select);
           <td> $product_quantity </td>
           <td> $ " . $product_quantity*$product_price . " </td>   
           <td> 
-            <form method='post' action='process_addone.php'> 
-              <input name='addone' type='submit' value='Add 1 item' /> 
+            <form id='add' method='post' action='process_addone.php'> 
+              <button class='button buttonBlack' name='addone' type='submit' style='padding:5px 10px 5px 10px;'>Add 1</button> 
               <input type='hidden' name='hidden-productid' value='$product_id' />
               <input type='hidden' name='hidden-orderid' value='$order_id' />
             </form>
           </td>
           <td> 
-            <form method='post' action='process_removeone.php'> 
-              <input name='removeone' type='submit' value='Remove 1 item' /> 
+            <form id='remove' method='post' action='process_removeone.php'> 
+              <button class='button buttonBlack' name='removeone' type='submit' style='padding:5px 10px 5px 10px;'>Remove 1</button>
               <input type='hidden' name='hidden-productid' value='$product_id' />
               <input type='hidden' name='hidden-orderid' value='$order_id' />
               <input type='hidden' name='hidden-productqty' value='$product_quantity' />
@@ -142,11 +156,14 @@ $result = $db->query($select);
     }  
   }
   echo 
-  ' </table> Total Cost: ' . 
-  $totalcost . 
-  '<br>
-  <table>
-    
+  ' </table> 
+
+  <br>
+  
+  <h2>Total Cost: ' . $totalcost . '</h2><br>
+  
+  <table class="checkout_table">
+   <form id = "checkout" method="post" action="processcheckout.php"> 
     <tr>
       <td> Delivery Address: </td>
       <td> <input type="text" name="address" value="' . $address . '" required/>
@@ -161,10 +178,10 @@ $result = $db->query($select);
     </tr>
   </table>
   
-  <form id = "checkout" method="post" action="processcheckout.php">
+  
     <input type="hidden" name="hidden-order_id" value="' . $order_id . '" />
     <input type="hidden" name="hidden-totalcost" value="' . $totalcost . '"/>
-    <input class="buttonBlack" type="submit" value="Buy" />
+    <center><button class="buttonBlackInverse" type="submit">PURCHASE NOW</button></center>
   </form>';
 
   }
@@ -189,6 +206,35 @@ $result = $db->query($select);
         data: $('form#checkout').serialize(),
         success: function(data){
           $('div#ordercomplete').show();
+          // alert('Your order has been submitted.');
+        },
+        error: function  (jXHR, textStatus, errorThrown){},
+      });
+    });
+
+    $('form#add').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: "process_addone.php",
+        type: "POST",
+        data: $(this).serialize(),
+        success: function(data){
+         location.reload();
+          // alert('Your order has been submitted.');
+        },
+        error: function  (jXHR, textStatus, errorThrown){},
+      });
+    });
+
+    $('form#remove').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: "process_removeone.php",
+        type: "POST",
+        data: $(this).serialize(),
+        success: function(data){
+          location.reload();
+          
           // alert('Your order has been submitted.');
         },
         error: function  (jXHR, textStatus, errorThrown){},

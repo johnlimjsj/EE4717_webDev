@@ -15,6 +15,8 @@ $lastname = $_POST['lastname'];
 $address = $_POST['address'];
 $paymentinfo = $_POST['paymentinfo'];
 
+echo 'address is ' . $address;
+echo 'pmt info is ' . $paymentinfo;
 
 $update = 
 "
@@ -32,7 +34,7 @@ SET paymentinfo=" . $paymentinfo .
 echo $update . '<br>';
 $db->query($update);
 
-$insert = "INSERT INTO Delivery_addresses (addr) VALUES ('" . $address . "')"; 
+$insert = "INSERT INTO Delivery_addresses (addr) VALUES ($address)"; 
 echo $insert . '<br>';
 $db->query($insert);
 

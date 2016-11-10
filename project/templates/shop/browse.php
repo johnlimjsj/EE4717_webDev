@@ -5,6 +5,7 @@ include 'functions.php';
 
 function listProductsByQuery($query){
     include '../php/connect_DB.php';
+    echo 'hihi'. $query;
     $result = $db->query($query);
     if($result){
       $i=0;
@@ -33,6 +34,7 @@ function listProductsByQuery($query){
     include '../php/connect_DB.php';
     $select = "SELECT * FROM Products WHERE cat_id=" . $catid;
     listProductsByQuery($select);
+
   }
 ?>
 
@@ -209,7 +211,8 @@ function listProductsByQuery($query){
 <?php 
 
 $customer_id = $_SESSION['valid_id'];
-$totalcost = 0.50;
+$totalcost = 0.00;
+
 if($customer_id != NULL){
   $order_id = getOrderIDFromCustID($customer_id);
     if($order_id != NULL){
@@ -223,9 +226,18 @@ if($customer_id != NULL){
 ?>
 
 <div>
-<h2>Total Price: $ <?php echo $totalcost ?></h2>
-<!-- <span id='totalprice'> 0</span> -->
+<h2>Total Price: $ <span id="totalprice"><?php echo $totalcost?></span></h2>
+<script>
+  var totalprice = 0.00;
+  $('input[name="add_to_cart"]').click(function(){
+    var value = $(this).prev().text();
+    var value = parseFloat(value);
+    totalprice += value;
+    $('#totalprice').html(totalprice);
+  });
+</script>
 </div>
+
 <button type="button" class="buttonBlackInverse" onclick="location.href='checkout.php';">CHECKOUT</button>
 
 <br><br><br><br><br><br>
@@ -239,7 +251,7 @@ if($customer_id != NULL){
       $.ajax({
         url: "processaddtocart.php",
         type: "POST",
-        data: $('form#addtomycart').serialize(),
+        data: $(this).serialize(),
         success: function(data){
           // $('div#ordercomplete').show();
           
